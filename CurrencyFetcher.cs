@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
+using System.Globalization;
 
 namespace CashFlow
 {
@@ -24,29 +24,52 @@ namespace CashFlow
         public DateTime StartAt = DateTime.Today;
         public DateTime EndAt = DateTime.Today - new TimeSpan(8, 0, 0, 0);
 
-        public Currencies Base = Currencies.TRY;
-        public List<Currencies> Symbols;
+        public Currencies Base = Currencies.USD;
+        public List<Currencies> Symbols = new List<Currencies> { Currencies.TRY, Currencies.JPY, Currencies.GBP, Currencies.EUR };
 
-        public void Fetch()
+        public Dictionary<Currencies, List<Node>> currencyDict;
+
+        public CurrencyFetcher()
         {
+            currencyDict = new Dictionary<Currencies, List<Node>>();
+            foreach (Currencies currency in Symbols)
+                currencyDict[currency] = new List<Node>();
+        }
+
+        public Dictionary<Currencies, List<Node>> Fetch()
+        {
+            string jsonString;
+
             try
             {   // Open the text file using a stream reader.
-                using (StreamReader sr = new StreamReader("../../exchangeratesapi-cache/history1.json"))
+                using (StreamReader sr = new StreamReader("../../exchangeratesapi-cache/history2.json"))
                 {
                     // Read the stream to a string, and write the string to the console.
-                    string jsonString = sr.ReadToEnd();
-                    dynamic jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonString);
-                    foreach (var date in jsonObject.rates)
-                    {
-                        Console.WriteLine(date.Name);
-                    }
+                    jsonString = sr.ReadToEnd();
                 }
             }
             catch (IOException e)
             {
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
+                throw e;
             }
+
+            dynamic jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonString);
+
+            foreach (var date in jsonObject.rates)
+            {
+                DateTime dt = DateTime.ParseExact(date.Name, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                foreach (var value in date.First)
+                {
+                    Enum.TryParse(value.Name, out Currencies currency);
+                    currencyDict[currency].Add(new Node { Time = dt, Value = value.First });
+                    //Console.WriteLine(currencyDict[Currencies.TRY].Count);
+                }
+            }
+
+            return currencyDict;
         }
     }
 }
