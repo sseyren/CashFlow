@@ -77,6 +77,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CurrencyFetcher.cs" />
+    <Compile Include="DateTimeDialog.cs" />
+    <Compile Include="gtk-gui\CashFlow.DateTimeDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
