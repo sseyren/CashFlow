@@ -10,6 +10,8 @@ namespace CashFlow
 {
     public partial class MainWindow : Gtk.Window
     {
+        private const string DateStringFormat = "dd-MM-yyyy";
+
         private PlotView MainPlotView;
 
         private DateTime StartDate, EndDate;
@@ -35,12 +37,12 @@ namespace CashFlow
                 if (resp.ResponseId == ResponseType.Ok)
                 {
                     StartDate = dialog.Calendar.Date;
-                    DateStartEntry.Text = StartDate.ToString("dd-MM-yyyy");
+                    DateStartEntry.Text = StartDate.ToString(DateStringFormat);
                 }
                 else if (resp.ResponseId != ResponseType.Ok && StartDate == new DateTime())
                 {
                     MessageDialog message = new MessageDialog(dialog, DialogFlags.DestroyWithParent,
-                        MessageType.Error, ButtonsType.Ok, "Başlangıç tarihi seçmediniz.");
+                        MessageType.Warning, ButtonsType.Ok, "Başlangıç tarihi seçmediniz.");
                     message.Run();
                     message.Destroy();
                 }
@@ -48,6 +50,28 @@ namespace CashFlow
             dialog.Run();
             dialog.Destroy();
         }
+
+        protected void OnDateEndEntryFocusGrabbed(object sender, EventArgs e)
+        {
+            DateTimeDialog dialog = new DateTimeDialog();
+            dialog.Response += delegate (object obj, ResponseArgs resp) {
+                if (resp.ResponseId == ResponseType.Ok)
+                {
+                    EndDate = dialog.Calendar.Date;
+                    DateEndEntry.Text = EndDate.ToString(DateStringFormat);
+                }
+                else if (resp.ResponseId != ResponseType.Ok && EndDate == new DateTime())
+                {
+                    MessageDialog message = new MessageDialog(dialog, DialogFlags.DestroyWithParent,
+                        MessageType.Warning, ButtonsType.Ok, "Bitiş tarihi seçmediniz.");
+                    message.Run();
+                    message.Destroy();
+                }
+            };
+            dialog.Run();
+            dialog.Destroy();
+        }
+
 
 
 

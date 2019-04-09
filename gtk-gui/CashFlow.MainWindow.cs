@@ -120,7 +120,7 @@ namespace CashFlow
 			// Container child DateFrameTable.Gtk.Table+TableChild
 			this.DateEndLabel = new global::Gtk.Label();
 			this.DateEndLabel.Name = "DateEndLabel";
-			this.DateEndLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Bitiş");
+			this.DateEndLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Bitiş:");
 			this.DateFrameTable.Add(this.DateEndLabel);
 			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateEndLabel]));
 			w4.TopAttach = ((uint)(1));
@@ -250,6 +250,7 @@ namespace CashFlow
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.DateStartEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateStartEntryFocusGrabbed);
+			this.DateEndEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateEndEntryFocusGrabbed);
 		}
 	}
 }

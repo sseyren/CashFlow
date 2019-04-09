@@ -74,6 +74,7 @@
                             <property name="Text" translatable="yes">-tarih seçin-</property>
                             <property name="IsEditable">False</property>
                             <property name="InvisibleChar">•</property>
+                            <signal name="FocusGrabbed" handler="OnDateEndEntryFocusGrabbed" />
                           </widget>
                           <packing>
                             <property name="TopAttach">1</property>
@@ -93,7 +94,7 @@
                         <child>
                           <widget class="Gtk.Label" id="DateEndLabel">
                             <property name="MemberName" />
-                            <property name="LabelProp" translatable="yes">Bitiş</property>
+                            <property name="LabelProp" translatable="yes">Bitiş:</property>
                           </widget>
                           <packing>
                             <property name="TopAttach">1</property>
