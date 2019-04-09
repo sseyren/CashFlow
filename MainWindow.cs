@@ -32,7 +32,12 @@ namespace CashFlow
 
         protected void OnDateStartEntryFocusGrabbed(object sender, EventArgs e)
         {
-            DateTimeDialog dialog = new DateTimeDialog();
+            DateTimeDialog dialog;
+            if (StartDate == new DateTime())
+                dialog = new DateTimeDialog();
+            else
+                dialog = new DateTimeDialog(StartDate);
+
             dialog.Response += delegate (object obj, ResponseArgs resp) {
                 if (resp.ResponseId == ResponseType.Ok)
                 {
@@ -53,7 +58,12 @@ namespace CashFlow
 
         protected void OnDateEndEntryFocusGrabbed(object sender, EventArgs e)
         {
-            DateTimeDialog dialog = new DateTimeDialog();
+            DateTimeDialog dialog;
+            if (EndDate == new DateTime())
+                dialog = new DateTimeDialog();
+            else
+                dialog = new DateTimeDialog(EndDate);
+
             dialog.Response += delegate (object obj, ResponseArgs resp) {
                 if (resp.ResponseId == ResponseType.Ok)
                 {
