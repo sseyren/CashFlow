@@ -71,7 +71,8 @@
                           <widget class="Gtk.Entry" id="DateEndEntry">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
-                            <property name="IsEditable">True</property>
+                            <property name="Text" translatable="yes">-tarih seçin-</property>
+                            <property name="IsEditable">False</property>
                             <property name="InvisibleChar">•</property>
                           </widget>
                           <packing>
@@ -112,8 +113,10 @@
                           <widget class="Gtk.Entry" id="DateStartEntry">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
-                            <property name="IsEditable">True</property>
+                            <property name="Text" translatable="yes">-tarih seçin-</property>
+                            <property name="IsEditable">False</property>
                             <property name="InvisibleChar">•</property>
+                            <signal name="FocusGrabbed" handler="OnDateStartEntryFocusGrabbed" />
                           </widget>
                           <packing>
                             <property name="LeftAttach">1</property>
@@ -313,11 +316,20 @@
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
-      <widget class="Gtk.VBox" id="dialog1_VBox">
+      <widget class="Gtk.VBox" id="VBox">
         <property name="MemberName" />
         <property name="BorderWidth">2</property>
         <child>
-          <placeholder />
+          <widget class="Gtk.Alignment" id="CalendarAlignment">
+            <property name="MemberName" />
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+          </packing>
         </child>
       </widget>
     </child>

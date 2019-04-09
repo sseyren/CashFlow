@@ -12,6 +12,8 @@ namespace CashFlow
     {
         private PlotView MainPlotView;
 
+        private DateTime StartDate, EndDate;
+
         public MainWindow() : base(Gtk.WindowType.Toplevel)
         {
             Build();
@@ -25,6 +27,29 @@ namespace CashFlow
             Application.Quit();
             a.RetVal = true;
         }
+
+        protected void OnDateStartEntryFocusGrabbed(object sender, EventArgs e)
+        {
+            DateTimeDialog dialog = new DateTimeDialog();
+            dialog.Response += delegate (object obj, ResponseArgs resp) {
+                if (resp.ResponseId == ResponseType.Ok)
+                {
+                    StartDate = dialog.Calendar.Date;
+                    DateStartEntry.Text = StartDate.ToString("dd-MM-yyyy");
+                }
+                else if (resp.ResponseId != ResponseType.Ok && StartDate == new DateTime())
+                {
+                    MessageDialog message = new MessageDialog(dialog, DialogFlags.DestroyWithParent,
+                        MessageType.Error, ButtonsType.Ok, "Başlangıç tarihi seçmediniz.");
+                    message.Run();
+                    message.Destroy();
+                }
+            };
+            dialog.Run();
+            dialog.Destroy();
+        }
+
+
 
         protected class Item
         {

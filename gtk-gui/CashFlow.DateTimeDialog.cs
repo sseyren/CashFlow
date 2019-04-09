@@ -4,6 +4,8 @@ namespace CashFlow
 {
 	public partial class DateTimeDialog
 	{
+		private global::Gtk.Alignment CalendarAlignment;
+
 		private global::Gtk.Button buttonCancel;
 
 		private global::Gtk.Button buttonOk;
@@ -16,14 +18,20 @@ namespace CashFlow
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Internal child CashFlow.DateTimeDialog.VBox
 			global::Gtk.VBox w1 = this.VBox;
-			w1.Name = "dialog1_VBox";
+			w1.Name = "VBox";
 			w1.BorderWidth = ((uint)(2));
+			// Container child VBox.Gtk.Box+BoxChild
+			this.CalendarAlignment = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+			this.CalendarAlignment.Name = "CalendarAlignment";
+			w1.Add(this.CalendarAlignment);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(w1[this.CalendarAlignment]));
+			w2.Position = 0;
 			// Internal child CashFlow.DateTimeDialog.ActionArea
-			global::Gtk.HButtonBox w2 = this.ActionArea;
-			w2.Name = "dialog1_ActionArea";
-			w2.Spacing = 10;
-			w2.BorderWidth = ((uint)(5));
-			w2.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w3 = this.ActionArea;
+			w3.Name = "dialog1_ActionArea";
+			w3.Spacing = 10;
+			w3.BorderWidth = ((uint)(5));
+			w3.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonCancel = new global::Gtk.Button();
 			this.buttonCancel.CanDefault = true;
@@ -33,9 +41,9 @@ namespace CashFlow
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-cancel";
 			this.AddActionWidget(this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w3 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w2[this.buttonCancel]));
-			w3.Expand = false;
-			w3.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w3[this.buttonCancel]));
+			w4.Expand = false;
+			w4.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonOk = new global::Gtk.Button();
 			this.buttonOk.CanDefault = true;
@@ -45,10 +53,10 @@ namespace CashFlow
 			this.buttonOk.UseUnderline = true;
 			this.buttonOk.Label = "gtk-ok";
 			this.AddActionWidget(this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w2[this.buttonOk]));
-			w4.Position = 1;
-			w4.Expand = false;
-			w4.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w3[this.buttonOk]));
+			w5.Position = 1;
+			w5.Expand = false;
+			w5.Fill = false;
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
