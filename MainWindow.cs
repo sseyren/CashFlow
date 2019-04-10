@@ -82,6 +82,20 @@ namespace CashFlow
             dialog.Destroy();
         }
 
+        protected void OnCurrencyListButtonClicked(object sender, EventArgs e)
+        {
+            CurrencyListDialog dialog = new CurrencyListDialog();
+            dialog.Response += delegate (object obj, ResponseArgs resp)
+            {
+                foreach (Currencies item in dialog.CurrencySelections)
+                {
+                    Console.WriteLine(item);
+                }
+            };
+            dialog.Run();
+            dialog.Destroy();
+        }
+
 
 
 

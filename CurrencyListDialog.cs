@@ -1,53 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
+using Gtk;
+
 namespace CashFlow
 {
     public partial class CurrencyListDialog : Gtk.Dialog
     {
+        public List<Currencies> CurrencySelections = new List<Currencies>();
+
+        private CheckButton[] CheckButtons;
+
+        private Array CurrencyArray;
+
         public CurrencyListDialog()
         {
             this.Build();
 
-            nodeview1.NodeStore = Store;
+            CurrencyArray = Enum.GetValues(typeof(Currencies));
 
-            // Create a column with title Artist and bind its renderer to model column 0
-            nodeview1.AppendColumn("Artist", new Gtk.CellRendererText(), "text", 0);
+            CheckButtons = new CheckButton[CurrencyArray.Length];
 
-            // Create a column with title 'Song Title' and bind its renderer to model column 1
-            nodeview1.AppendColumn("Song Title", new Gtk.CellRendererText(), "text", 1);
+            for (uint i = 0; i < (uint)CurrencyArray.Length; i++)
+            {
+                CheckButtons[i] = new CheckButton { Label = CurrencyArray.GetValue(i).ToString() };
+                uint row = i / 6;
+                uint column = i % 6;
+                MainTable.Attach(CheckButtons[i], row, row + 1, column, column + 1);
+            }
+
+            MainTable.ShowAll();
         }
 
-        Gtk.NodeStore store;
-        Gtk.NodeStore Store
+        protected void OnResponse(object o, ResponseArgs args)
         {
-            get
+            for (int i = 0; i < CheckButtons.Length; i++)
             {
-                if (store == null)
-                {
-                    store = new Gtk.NodeStore(typeof(MyTreeNode));
-                    store.AddNode(new MyTreeNode("The Beatles", "Yesterday"));
-                    store.AddNode(new MyTreeNode("Peter Gabriel", "In Your Eyes"));
-                    store.AddNode(new MyTreeNode("Rush", "Fly By Night"));
-                }
-                return store;
+                if (CheckButtons[i].Active)
+                    CurrencySelections.Add((Currencies)i);
             }
         }
-    }
-
-    [Gtk.TreeNode(ListOnly = true)]
-    public class MyTreeNode : Gtk.TreeNode
-    {
-        string song_title;
-
-        public MyTreeNode(string artist, string song_title)
-        {
-            Artist = artist;
-            this.song_title = song_title;
-        }
-
-        [Gtk.TreeNodeValue(Column = 0)]
-        public string Artist;
-
-        [Gtk.TreeNodeValue(Column = 1)]
-        public string SongTitle { get { return song_title; } }
     }
 }

@@ -233,6 +233,7 @@
                             <property name="Type">TextOnly</property>
                             <property name="Label" translatable="yes">Gösterilecek Kurlar</property>
                             <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="OnCurrencyListButtonClicked" />
                           </widget>
                           <packing>
                             <property name="Position">1</property>
@@ -379,24 +380,21 @@
   </widget>
   <widget class="Gtk.Dialog" id="CashFlow.CurrencyListDialog" design-size="400 300">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">dialog1</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
+    <signal name="Response" handler="OnResponse" />
     <child internal-child="VBox">
       <widget class="Gtk.VBox" id="dialog1_VBox">
         <property name="MemberName" />
         <property name="BorderWidth">2</property>
         <child>
-          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+          <widget class="Gtk.Table" id="MainTable">
             <property name="MemberName" />
-            <property name="ShadowType">In</property>
+            <property name="RowSpacing">6</property>
+            <property name="ColumnSpacing">6</property>
             <child>
-              <widget class="Gtk.NodeView" id="nodeview1">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="ShowScrollbars">True</property>
-              </widget>
+              <placeholder />
             </child>
           </widget>
           <packing>
