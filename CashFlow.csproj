@@ -79,6 +79,8 @@
     <Compile Include="CurrencyFetcher.cs" />
     <Compile Include="DateTimeDialog.cs" />
     <Compile Include="gtk-gui\CashFlow.DateTimeDialog.cs" />
+    <Compile Include="CurrencyListDialog.cs" />
+    <Compile Include="gtk-gui\CashFlow.CurrencyListDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
