@@ -67,7 +67,7 @@ namespace CashFlow
 			this.UIManager.InsertActionGroup(w1, 0);
 			this.AddAccelGroup(this.UIManager.AccelGroup);
 			this.Name = "CashFlow.MainWindow";
-			this.Title = global::Mono.Unix.Catalog.GetString("MainWindow");
+			this.Title = global::Mono.Unix.Catalog.GetString("CashFlow");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.DefaultWidth = 1280;
 			this.DefaultHeight = 720;

@@ -15,6 +15,7 @@ namespace CashFlow
 			global::Stetic.Gui.Initialize(this);
 			// Widget CashFlow.DateTimeDialog
 			this.Name = "CashFlow.DateTimeDialog";
+			this.Title = global::Mono.Unix.Catalog.GetString("Tarih Seçin");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Internal child CashFlow.DateTimeDialog.VBox
 			global::Gtk.VBox w1 = this.VBox;

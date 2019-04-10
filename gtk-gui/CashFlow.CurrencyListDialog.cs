@@ -15,6 +15,7 @@ namespace CashFlow
 			global::Stetic.Gui.Initialize(this);
 			// Widget CashFlow.CurrencyListDialog
 			this.Name = "CashFlow.CurrencyListDialog";
+			this.Title = global::Mono.Unix.Catalog.GetString("Kurları Seçin");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Internal child CashFlow.CurrencyListDialog.VBox
 			global::Gtk.VBox w1 = this.VBox;
