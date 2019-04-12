@@ -19,7 +19,25 @@ namespace CashFlow
         public MainWindow() : base(Gtk.WindowType.Toplevel)
         {
             Build();
-            MainPlotView = new PlotView { Model = TestPlotModel() };
+
+            PlotModel MainPlotModel = new PlotModel();
+            MainPlotModel.Axes.Add(new DateTimeAxis
+            {
+                Position = AxisPosition.Bottom,
+                IntervalType = DateTimeIntervalType.Days,
+                StringFormat = "dd-MM\nyyyy",
+                MajorGridlineStyle = LineStyle.Solid,
+                Minimum = DateTimeAxis.ToDouble(DateTime.Now.AddDays(-30)),
+                Maximum = DateTimeAxis.ToDouble(DateTime.Now.AddDays(30))
+            });
+            MainPlotModel.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                MajorGridlineStyle = LineStyle.Solid,
+                MinorGridlineStyle = LineStyle.Dot,
+            });
+
+            MainPlotView = new PlotView { Model = MainPlotModel };
             MainPlotAlignment.Add(MainPlotView);
             MainPlotView.Show();
         }
