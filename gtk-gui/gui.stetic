@@ -52,7 +52,7 @@
             <child>
               <widget class="Gtk.Frame" id="DateFrame">
                 <property name="MemberName" />
-                <property name="ShadowType">None</property>
+                <property name="ShadowType">In</property>
                 <child>
                   <widget class="Gtk.Alignment" id="GtkAlignment">
                     <property name="MemberName" />
@@ -60,6 +60,8 @@
                     <property name="Yalign">0</property>
                     <property name="LeftPadding">12</property>
                     <property name="TopPadding">6</property>
+                    <property name="RightPadding">6</property>
+                    <property name="BottomPadding">6</property>
                     <child>
                       <widget class="Gtk.Table" id="DateFrameTable">
                         <property name="MemberName" />
@@ -174,7 +176,7 @@
             <child>
               <widget class="Gtk.Frame" id="CurrencyFrame">
                 <property name="MemberName" />
-                <property name="ShadowType">None</property>
+                <property name="ShadowType">Out</property>
                 <child>
                   <widget class="Gtk.Alignment" id="GtkAlignment1">
                     <property name="MemberName" />
@@ -182,10 +184,11 @@
                     <property name="Yalign">0</property>
                     <property name="LeftPadding">12</property>
                     <property name="TopPadding">6</property>
+                    <property name="RightPadding">6</property>
+                    <property name="BottomPadding">6</property>
                     <child>
                       <widget class="Gtk.VBox" id="CurrencyVbox">
                         <property name="MemberName" />
-                        <property name="Spacing">6</property>
                         <child>
                           <widget class="Gtk.HBox" id="CurrencyHbox">
                             <property name="MemberName" />
@@ -210,9 +213,7 @@
                               </widget>
                               <packing>
                                 <property name="Position">1</property>
-                                <property name="AutoSize">True</property>
-                                <property name="Expand">False</property>
-                                <property name="Fill">False</property>
+                                <property name="AutoSize">False</property>
                               </packing>
                             </child>
                           </widget>

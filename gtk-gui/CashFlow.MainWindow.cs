@@ -94,12 +94,14 @@ namespace CashFlow
 			// Container child PropsVbox.Gtk.Box+BoxChild
 			this.DateFrame = new global::Gtk.Frame();
 			this.DateFrame.Name = "DateFrame";
-			this.DateFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+			this.DateFrame.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child DateFrame.Gtk.Container+ContainerChild
 			this.GtkAlignment = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
 			this.GtkAlignment.Name = "GtkAlignment";
 			this.GtkAlignment.LeftPadding = ((uint)(12));
 			this.GtkAlignment.TopPadding = ((uint)(6));
+			this.GtkAlignment.RightPadding = ((uint)(6));
+			this.GtkAlignment.BottomPadding = ((uint)(6));
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			this.DateFrameTable = new global::Gtk.Table(((uint)(2)), ((uint)(2)), false);
 			this.DateFrameTable.Name = "DateFrameTable";
@@ -164,16 +166,17 @@ namespace CashFlow
 			// Container child PropsVbox.Gtk.Box+BoxChild
 			this.CurrencyFrame = new global::Gtk.Frame();
 			this.CurrencyFrame.Name = "CurrencyFrame";
-			this.CurrencyFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+			this.CurrencyFrame.ShadowType = ((global::Gtk.ShadowType)(2));
 			// Container child CurrencyFrame.Gtk.Container+ContainerChild
 			this.GtkAlignment1 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
 			this.GtkAlignment1.Name = "GtkAlignment1";
 			this.GtkAlignment1.LeftPadding = ((uint)(12));
 			this.GtkAlignment1.TopPadding = ((uint)(6));
+			this.GtkAlignment1.RightPadding = ((uint)(6));
+			this.GtkAlignment1.BottomPadding = ((uint)(6));
 			// Container child GtkAlignment1.Gtk.Container+ContainerChild
 			this.CurrencyVbox = new global::Gtk.VBox();
 			this.CurrencyVbox.Name = "CurrencyVbox";
-			this.CurrencyVbox.Spacing = 6;
 			// Container child CurrencyVbox.Gtk.Box+BoxChild
 			this.CurrencyHbox = new global::Gtk.HBox();
 			this.CurrencyHbox.Name = "CurrencyHbox";
@@ -193,8 +196,6 @@ namespace CashFlow
 			this.CurrencyHbox.Add(this.CurrencyBaseSelection);
 			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.CurrencyHbox[this.CurrencyBaseSelection]));
 			w11.Position = 1;
-			w11.Expand = false;
-			w11.Fill = false;
 			this.CurrencyVbox.Add(this.CurrencyHbox);
 			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.CurrencyVbox[this.CurrencyHbox]));
 			w12.Position = 0;
