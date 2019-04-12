@@ -48,6 +48,8 @@ namespace CashFlow
 
 		private global::Gtk.Label CurrencyFrameLabel;
 
+		private global::Gtk.Button FetchButton;
+
 		private global::Gtk.Alignment MainPlotAlignment;
 
 		private global::Gtk.Statusbar MainStatusBar;
@@ -218,30 +220,41 @@ namespace CashFlow
 			this.CurrencyFrame.LabelWidget = this.CurrencyFrameLabel;
 			this.PropsVbox.Add(this.CurrencyFrame);
 			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.CurrencyFrame]));
-			w16.Position = 2;
+			w16.Position = 1;
 			w16.Expand = false;
 			w16.Fill = false;
-			this.MainVbox.Add(this.PropsVbox);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.PropsVbox]));
-			w17.Position = 1;
+			// Container child PropsVbox.Gtk.Box+BoxChild
+			this.FetchButton = new global::Gtk.Button();
+			this.FetchButton.CanFocus = true;
+			this.FetchButton.Name = "FetchButton";
+			this.FetchButton.UseUnderline = true;
+			this.FetchButton.Label = global::Mono.Unix.Catalog.GetString("Verileri Getir");
+			this.PropsVbox.Add(this.FetchButton);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.FetchButton]));
+			w17.Position = 2;
 			w17.Expand = false;
 			w17.Fill = false;
+			this.MainVbox.Add(this.PropsVbox);
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.PropsVbox]));
+			w18.Position = 1;
+			w18.Expand = false;
+			w18.Fill = false;
 			// Container child MainVbox.Gtk.Box+BoxChild
 			this.MainPlotAlignment = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.MainPlotAlignment.Name = "MainPlotAlignment";
 			this.MainVbox.Add(this.MainPlotAlignment);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainPlotAlignment]));
-			w18.Position = 2;
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainPlotAlignment]));
+			w19.Position = 2;
 			// Container child MainVbox.Gtk.Box+BoxChild
 			this.MainStatusBar = new global::Gtk.Statusbar();
 			this.MainStatusBar.Name = "MainStatusBar";
 			this.MainStatusBar.Spacing = 6;
 			this.MainVbox.Add(this.MainStatusBar);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainStatusBar]));
-			w19.PackType = ((global::Gtk.PackType)(1));
-			w19.Position = 3;
-			w19.Expand = false;
-			w19.Fill = false;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainStatusBar]));
+			w20.PackType = ((global::Gtk.PackType)(1));
+			w20.Position = 3;
+			w20.Expand = false;
+			w20.Fill = false;
 			this.Add(this.MainVbox);
 			if ((this.Child != null))
 			{
