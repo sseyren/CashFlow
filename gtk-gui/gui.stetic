@@ -196,7 +196,7 @@
                             <child>
                               <widget class="Gtk.Label" id="CurrencyBaseLabel">
                                 <property name="MemberName" />
-                                <property name="LabelProp" translatable="yes">Taban Kur</property>
+                                <property name="LabelProp" translatable="yes">Taban Kur:</property>
                               </widget>
                               <packing>
                                 <property name="Position">0</property>
@@ -291,7 +291,7 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Statusbar" id="statusbar2">
+          <widget class="Gtk.Statusbar" id="MainStatusBar">
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>

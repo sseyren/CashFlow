@@ -50,7 +50,7 @@ namespace CashFlow
 
 		private global::Gtk.Alignment MainPlotAlignment;
 
-		private global::Gtk.Statusbar statusbar2;
+		private global::Gtk.Statusbar MainStatusBar;
 
 		protected virtual void Build()
 		{
@@ -179,7 +179,7 @@ namespace CashFlow
 			// Container child CurrencyHbox.Gtk.Box+BoxChild
 			this.CurrencyBaseLabel = new global::Gtk.Label();
 			this.CurrencyBaseLabel.Name = "CurrencyBaseLabel";
-			this.CurrencyBaseLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Taban Kur");
+			this.CurrencyBaseLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Taban Kur:");
 			this.CurrencyHbox.Add(this.CurrencyBaseLabel);
 			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.CurrencyHbox[this.CurrencyBaseLabel]));
 			w10.Position = 0;
@@ -233,11 +233,11 @@ namespace CashFlow
 			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainPlotAlignment]));
 			w18.Position = 2;
 			// Container child MainVbox.Gtk.Box+BoxChild
-			this.statusbar2 = new global::Gtk.Statusbar();
-			this.statusbar2.Name = "statusbar2";
-			this.statusbar2.Spacing = 6;
-			this.MainVbox.Add(this.statusbar2);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.statusbar2]));
+			this.MainStatusBar = new global::Gtk.Statusbar();
+			this.MainStatusBar.Name = "MainStatusBar";
+			this.MainStatusBar.Spacing = 6;
+			this.MainVbox.Add(this.MainStatusBar);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainStatusBar]));
 			w19.PackType = ((global::Gtk.PackType)(1));
 			w19.Position = 3;
 			w19.Expand = false;

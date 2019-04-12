@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gtk;
 using OxyPlot;
 using OxyPlot.GtkSharp;
 using OxyPlot.Axes;
 using OxyPlot.Series;
-using System.Collections.Generic;
 
 namespace CashFlow
 {
