@@ -69,6 +69,11 @@ namespace CashFlow
                 }
             }
 
+            foreach (Currencies key in currencyDict.Keys)
+            {
+                currencyDict[key].Sort((x, y) => DateTime.Compare(x.Time, y.Time));
+            }
+
             return currencyDict;
         }
     }
