@@ -14,6 +14,7 @@ namespace CashFlow
 
         private PlotView MainPlotView;
         private PlotModel MainPlotModel;
+        private PlotController MainPlotController = new PlotController();
 
         private CurrencyFetcher Fetcher = new CurrencyFetcher();
 
@@ -27,6 +28,9 @@ namespace CashFlow
             foreach (string currency in Enum.GetNames(typeof(Currencies)))
                 CurrencyBaseSelection.AppendText(currency);
             CurrencyBaseSelection.Active = (int)Fetcher.Base;
+
+            MainPlotController.BindMouseDown(OxyMouseButton.Left, PlotCommands.PanAt);
+            MainPlotController.BindMouseDown(OxyMouseButton.Right, PlotCommands.PointsOnlyTrack);
 
             MainPlotModel = new PlotModel();
             MainPlotModel.Axes.Add(new DateTimeAxis
@@ -46,7 +50,7 @@ namespace CashFlow
                 TickStyle = TickStyle.Outside
             });
 
-            MainPlotView = new PlotView { Model = MainPlotModel };
+            MainPlotView = new PlotView { Model = MainPlotModel, Controller = MainPlotController };
             MainPlotAlignment.Add(MainPlotView);
             MainPlotView.Show();
         }
