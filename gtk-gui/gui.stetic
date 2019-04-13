@@ -391,10 +391,12 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="CashFlow.CurrencyListDialog" design-size="400 300">
+  <widget class="Gtk.Dialog" id="CashFlow.CurrencyListDialog" design-size="405 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Kurları Seçin</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="DefaultWidth">420</property>
+    <property name="DefaultHeight">350</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <signal name="Response" handler="OnResponse" />
@@ -403,16 +405,77 @@
         <property name="MemberName" />
         <property name="BorderWidth">2</property>
         <child>
+          <widget class="Gtk.HButtonBox" id="SelectionsButtonBox">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <property name="BorderWidth">4</property>
+            <property name="Size">3</property>
+            <property name="LayoutStyle">Edge</property>
+            <child>
+              <widget class="Gtk.Button" id="SelectAllButton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Hepsini Seç</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnSelectAllButtonClicked" />
+              </widget>
+              <packing>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="ReverseButton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Tersine Çevir</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnReverseButtonClicked" />
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="SelectNoneButton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Seçimleri Temizle</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnSelectNoneButtonClicked" />
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+            <property name="Padding">4</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.Table" id="MainTable">
             <property name="MemberName" />
             <property name="RowSpacing">6</property>
             <property name="ColumnSpacing">6</property>
+            <property name="BorderWidth">6</property>
             <child>
               <placeholder />
             </child>
           </widget>
           <packing>
-            <property name="Position">0</property>
+            <property name="Position">1</property>
             <property name="AutoSize">True</property>
           </packing>
         </child>

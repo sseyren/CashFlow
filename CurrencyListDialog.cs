@@ -56,5 +56,23 @@ namespace CashFlow
                     CurrencySelections.Add((Currencies)i);
             }
         }
+
+        protected void OnSelectAllButtonClicked(object sender, EventArgs e)
+        {
+            foreach (ToggleButton button in CheckButtons)
+                button.Active = true;
+        }
+
+        protected void OnReverseButtonClicked(object sender, EventArgs e)
+        {
+            foreach (ToggleButton button in CheckButtons)
+                button.Active = !button.Active;
+        }
+
+        protected void OnSelectNoneButtonClicked(object sender, EventArgs e)
+        {
+            foreach (ToggleButton button in CheckButtons)
+                button.Active = false;
+        }
     }
 }

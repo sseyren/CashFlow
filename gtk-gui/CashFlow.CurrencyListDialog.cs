@@ -4,6 +4,14 @@ namespace CashFlow
 {
 	public partial class CurrencyListDialog
 	{
+		private global::Gtk.HButtonBox SelectionsButtonBox;
+
+		private global::Gtk.Button SelectAllButton;
+
+		private global::Gtk.Button ReverseButton;
+
+		private global::Gtk.Button SelectNoneButton;
+
 		private global::Gtk.Table MainTable;
 
 		private global::Gtk.Button buttonCancel;
@@ -17,24 +25,71 @@ namespace CashFlow
 			this.Name = "CashFlow.CurrencyListDialog";
 			this.Title = global::Mono.Unix.Catalog.GetString("Kurları Seçin");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.DefaultWidth = 420;
+			this.DefaultHeight = 350;
 			// Internal child CashFlow.CurrencyListDialog.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";
 			w1.BorderWidth = ((uint)(2));
 			// Container child dialog1_VBox.Gtk.Box+BoxChild
+			this.SelectionsButtonBox = new global::Gtk.HButtonBox();
+			this.SelectionsButtonBox.Name = "SelectionsButtonBox";
+			this.SelectionsButtonBox.Spacing = 6;
+			this.SelectionsButtonBox.BorderWidth = ((uint)(4));
+			this.SelectionsButtonBox.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(2));
+			// Container child SelectionsButtonBox.Gtk.ButtonBox+ButtonBoxChild
+			this.SelectAllButton = new global::Gtk.Button();
+			this.SelectAllButton.CanFocus = true;
+			this.SelectAllButton.Name = "SelectAllButton";
+			this.SelectAllButton.UseUnderline = true;
+			this.SelectAllButton.Label = global::Mono.Unix.Catalog.GetString("Hepsini Seç");
+			this.SelectionsButtonBox.Add(this.SelectAllButton);
+			global::Gtk.ButtonBox.ButtonBoxChild w2 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.SelectionsButtonBox[this.SelectAllButton]));
+			w2.Expand = false;
+			w2.Fill = false;
+			// Container child SelectionsButtonBox.Gtk.ButtonBox+ButtonBoxChild
+			this.ReverseButton = new global::Gtk.Button();
+			this.ReverseButton.CanFocus = true;
+			this.ReverseButton.Name = "ReverseButton";
+			this.ReverseButton.UseUnderline = true;
+			this.ReverseButton.Label = global::Mono.Unix.Catalog.GetString("Tersine Çevir");
+			this.SelectionsButtonBox.Add(this.ReverseButton);
+			global::Gtk.ButtonBox.ButtonBoxChild w3 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.SelectionsButtonBox[this.ReverseButton]));
+			w3.Position = 1;
+			w3.Expand = false;
+			w3.Fill = false;
+			// Container child SelectionsButtonBox.Gtk.ButtonBox+ButtonBoxChild
+			this.SelectNoneButton = new global::Gtk.Button();
+			this.SelectNoneButton.CanFocus = true;
+			this.SelectNoneButton.Name = "SelectNoneButton";
+			this.SelectNoneButton.UseUnderline = true;
+			this.SelectNoneButton.Label = global::Mono.Unix.Catalog.GetString("Seçimleri Temizle");
+			this.SelectionsButtonBox.Add(this.SelectNoneButton);
+			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.SelectionsButtonBox[this.SelectNoneButton]));
+			w4.Position = 2;
+			w4.Expand = false;
+			w4.Fill = false;
+			w1.Add(this.SelectionsButtonBox);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(w1[this.SelectionsButtonBox]));
+			w5.Position = 0;
+			w5.Expand = false;
+			w5.Fill = false;
+			w5.Padding = ((uint)(4));
+			// Container child dialog1_VBox.Gtk.Box+BoxChild
 			this.MainTable = new global::Gtk.Table(((uint)(1)), ((uint)(1)), false);
 			this.MainTable.Name = "MainTable";
 			this.MainTable.RowSpacing = ((uint)(6));
 			this.MainTable.ColumnSpacing = ((uint)(6));
+			this.MainTable.BorderWidth = ((uint)(6));
 			w1.Add(this.MainTable);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(w1[this.MainTable]));
-			w2.Position = 0;
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(w1[this.MainTable]));
+			w6.Position = 1;
 			// Internal child CashFlow.CurrencyListDialog.ActionArea
-			global::Gtk.HButtonBox w3 = this.ActionArea;
-			w3.Name = "dialog1_ActionArea";
-			w3.Spacing = 10;
-			w3.BorderWidth = ((uint)(5));
-			w3.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w7 = this.ActionArea;
+			w7.Name = "dialog1_ActionArea";
+			w7.Spacing = 10;
+			w7.BorderWidth = ((uint)(5));
+			w7.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonCancel = new global::Gtk.Button();
 			this.buttonCancel.CanDefault = true;
@@ -44,9 +99,9 @@ namespace CashFlow
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-cancel";
 			this.AddActionWidget(this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w3[this.buttonCancel]));
-			w4.Expand = false;
-			w4.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonCancel]));
+			w8.Expand = false;
+			w8.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonOk = new global::Gtk.Button();
 			this.buttonOk.CanDefault = true;
@@ -56,18 +111,19 @@ namespace CashFlow
 			this.buttonOk.UseUnderline = true;
 			this.buttonOk.Label = "gtk-ok";
 			this.AddActionWidget(this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w3[this.buttonOk]));
-			w5.Position = 1;
-			w5.Expand = false;
-			w5.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w9 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonOk]));
+			w9.Position = 1;
+			w9.Expand = false;
+			w9.Fill = false;
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 400;
-			this.DefaultHeight = 300;
 			this.Show();
 			this.Response += new global::Gtk.ResponseHandler(this.OnResponse);
+			this.SelectAllButton.Clicked += new global::System.EventHandler(this.OnSelectAllButtonClicked);
+			this.ReverseButton.Clicked += new global::System.EventHandler(this.OnReverseButtonClicked);
+			this.SelectNoneButton.Clicked += new global::System.EventHandler(this.OnSelectNoneButtonClicked);
 		}
 	}
 }
