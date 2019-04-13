@@ -19,19 +19,7 @@ namespace CashFlow
 
     public class DateException : Exception
     {
-        public enum DateType
-        {
-            Start, End
-        }
-
-        private readonly string prefix;
-
-        public DateException(DateType dateType)
-        {
-            prefix = (dateType == DateType.Start) ? "Başlangıç" : "Bitiş";
-        }
-
-        public override string Message => prefix + " tarihi hatalı.";
+        public override string Message => "Geçerli bir tarih aralığı girilmeli.";
     }
 
     public class SymbolsException : Exception
@@ -52,6 +40,9 @@ namespace CashFlow
 
         public CurrencyFetcher()
         {
+            EndAt = DateTime.Today;
+            StartAt = EndAt.AddYears(-1);
+
             currencyDict = new Dictionary<Currencies, List<Node>>();
             foreach (Currencies currency in Symbols)
                 currencyDict[currency] = new List<Node>();
@@ -59,10 +50,8 @@ namespace CashFlow
 
         public Dictionary<Currencies, List<Node>> Fetch()
         {
-            if (StartAt == new DateTime())
-                throw new DateException(DateException.DateType.Start);
-            if (EndAt == new DateTime())
-                throw new DateException(DateException.DateType.End);
+            if (StartAt >= EndAt)
+                throw new DateException();
             if (Symbols.Count == 0)
                 throw new SymbolsException();
 

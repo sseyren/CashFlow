@@ -21,8 +21,12 @@ namespace CashFlow
         {
             Build();
 
+            DateStartEntry.Text = Fetcher.StartAt.ToString(DateStringFormat);
+            DateEndEntry.Text = Fetcher.EndAt.ToString(DateStringFormat);
+
             foreach (string currency in Enum.GetNames(typeof(Currencies)))
                 CurrencyBaseSelection.AppendText(currency);
+            CurrencyBaseSelection.Active = (int)Fetcher.Base;
 
             MainPlotModel = new PlotModel();
             MainPlotModel.Axes.Add(new DateTimeAxis
