@@ -17,6 +17,28 @@ namespace CashFlow
         public double Value { get; set; }
     }
 
+    public class DateException : Exception
+    {
+        public enum DateType
+        {
+            Start, End
+        }
+
+        private readonly string prefix;
+
+        public DateException(DateType dateType)
+        {
+            prefix = (dateType == DateType.Start) ? "Başlangıç" : "Bitiş";
+        }
+
+        public override string Message => prefix + " tarihi hatalı.";
+    }
+
+    public class SymbolsException : Exception
+    {
+        public override string Message => "Gösterilecek hiç kur yok.";
+    }
+
     public class CurrencyFetcher
     {
         public const string BaseURL = "https://api.exchangeratesapi.io/history";
@@ -37,6 +59,13 @@ namespace CashFlow
 
         public Dictionary<Currencies, List<Node>> Fetch()
         {
+            if (StartAt == new DateTime())
+                throw new DateException(DateException.DateType.Start);
+            if (EndAt == new DateTime())
+                throw new DateException(DateException.DateType.End);
+            if (Symbols.Count == 0)
+                throw new SymbolsException();
+
             string jsonString;
 
             try

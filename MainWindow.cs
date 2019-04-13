@@ -22,9 +22,7 @@ namespace CashFlow
             Build();
 
             foreach (string currency in Enum.GetNames(typeof(Currencies)))
-            {
                 CurrencyBaseSelection.AppendText(currency);
-            }
 
             MainPlotModel = new PlotModel();
             MainPlotModel.Axes.Add(new DateTimeAxis
@@ -123,22 +121,31 @@ namespace CashFlow
 
         protected void OnFetchButtonClicked(object sender, EventArgs e)
         {
-            MainPlotModel.Series.Clear();
-
-            Dictionary<Currencies, List<Node>> dict = Fetcher.Fetch();
-
-            foreach (KeyValuePair<Currencies, List<Node>> pair in dict)
+            try
             {
-                MainPlotModel.Series.Add(new LineSeries
+                Dictionary<Currencies, List<Node>> dict = Fetcher.Fetch();
+
+                MainPlotModel.Series.Clear();
+                foreach (KeyValuePair<Currencies, List<Node>> pair in dict)
                 {
-                    Title = pair.Key.ToString(),
-                    ItemsSource = pair.Value,
-                    DataFieldX = "Time",
-                    DataFieldY = "Value",
-                    MarkerType = MarkerType.Circle
-                });
+                    MainPlotModel.Series.Add(new LineSeries
+                    {
+                        Title = pair.Key.ToString(),
+                        ItemsSource = pair.Value,
+                        DataFieldX = "Time",
+                        DataFieldY = "Value",
+                        MarkerType = MarkerType.Circle
+                    });
+                }
+                MainPlotModel.InvalidatePlot(true);
             }
-            MainPlotModel.InvalidatePlot(true);
+            catch (Exception ex)
+            {
+                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                    MessageType.Error, ButtonsType.Ok, ex.Message);
+                dialog.Run();
+                dialog.Destroy();
+            }  
         }
 
 
