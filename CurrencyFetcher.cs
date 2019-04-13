@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using System.IO;
 using System.Globalization;
+using System.Net;
 
 namespace CashFlow
 {
@@ -36,16 +36,27 @@ namespace CashFlow
         public Currencies Base = Currencies.USD;
         public List<Currencies> Symbols = new List<Currencies> { Currencies.TRY, Currencies.JPY, Currencies.GBP, Currencies.EUR };
 
-        public Dictionary<Currencies, List<Node>> currencyDict;
+        public Dictionary<Currencies, List<Node>> currencyDict = new Dictionary<Currencies, List<Node>>();
 
         public CurrencyFetcher()
         {
             EndAt = DateTime.Today;
             StartAt = EndAt.AddYears(-1);
+        }
 
-            currencyDict = new Dictionary<Currencies, List<Node>>();
-            foreach (Currencies currency in Symbols)
-                currencyDict[currency] = new List<Node>();
+        private string RequestURL
+        {
+            get
+            {
+                const string dateStringFormat = "yyyy-MM-dd";
+                string symbols = string.Empty;
+
+                foreach (Currencies symbol in Symbols)
+                    symbols += symbol.ToString() + ",";
+
+                return BaseURL + $"?start_at={StartAt.ToString(dateStringFormat)}&end_at={EndAt.ToString(dateStringFormat)}" +
+                    $"&symbols={symbols.Substring(0, symbols.Length - 1)}&base={Base.ToString()}";
+            }
         }
 
         public Dictionary<Currencies, List<Node>> Fetch()
@@ -55,24 +66,14 @@ namespace CashFlow
             if (Symbols.Count == 0)
                 throw new SymbolsException();
 
-            string jsonString;
-
-            try
-            {   // Open the text file using a stream reader.
-                using (StreamReader sr = new StreamReader("../../exchangeratesapi-cache/history2.json"))
-                {
-                    // Read the stream to a string, and write the string to the console.
-                    jsonString = sr.ReadToEnd();
-                }
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
-                throw e;
-            }
+            WebClient client = new WebClient(); 
+            string jsonString = client.DownloadString(RequestURL);
 
             dynamic jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonString);
+
+            currencyDict.Clear();
+            foreach (Currencies currency in Symbols)
+                currencyDict[currency] = new List<Node>();
 
             foreach (var date in jsonObject.rates)
             {
@@ -82,14 +83,11 @@ namespace CashFlow
                 {
                     Enum.TryParse(value.Name, out Currencies currency);
                     currencyDict[currency].Add(new Node { Time = dt, Value = value.First });
-                    //Console.WriteLine(currencyDict[Currencies.TRY].Count);
                 }
             }
 
             foreach (Currencies key in currencyDict.Keys)
-            {
                 currencyDict[key].Sort((x, y) => DateTime.Compare(x.Time, y.Time));
-            }
 
             return currencyDict;
         }

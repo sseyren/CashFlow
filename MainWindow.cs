@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using Gtk;
 using OxyPlot;
 using OxyPlot.GtkSharp;
@@ -147,13 +148,24 @@ namespace CashFlow
                 }
                 MainPlotModel.InvalidatePlot(true);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is DateException || ex is SymbolsException)
             {
                 MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
                     MessageType.Error, ButtonsType.Ok, ex.Message);
                 dialog.Run();
                 dialog.Destroy();
-            }  
+            }
+            catch (WebException ex)
+            {
+                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                    MessageType.Error, ButtonsType.Ok,
+                    "Sunucuya istekte bulunurken bir hata ile karşılaşıldı.\n\n" +
+                    "Mesaj: " + ex.Message + "\n" + 
+                    "HResult: " + ex.HResult + "\n" + 
+                    "Status: " + ex.Status);
+                dialog.Run();
+                dialog.Destroy();
+            }
         }
 
 
