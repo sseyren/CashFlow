@@ -21,8 +21,7 @@ namespace CashFlow
     {
         public const string BaseURL = "https://api.exchangeratesapi.io/history";
 
-        public DateTime StartAt = DateTime.Today;
-        public DateTime EndAt = DateTime.Today - new TimeSpan(8, 0, 0, 0);
+        public DateTime StartAt, EndAt;
 
         public Currencies Base = Currencies.USD;
         public List<Currencies> Symbols = new List<Currencies> { Currencies.TRY, Currencies.JPY, Currencies.GBP, Currencies.EUR };

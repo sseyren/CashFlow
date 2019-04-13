@@ -265,6 +265,7 @@ namespace CashFlow
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.DateStartEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateStartEntryFocusGrabbed);
 			this.DateEndEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateEndEntryFocusGrabbed);
+			this.CurrencyBaseSelection.Changed += new global::System.EventHandler(this.OnCurrencyBaseSelectionChanged);
 			this.CurrencyListButton.Clicked += new global::System.EventHandler(this.OnCurrencyListButtonClicked);
 			this.FetchButton.Clicked += new global::System.EventHandler(this.OnFetchButtonClicked);
 		}

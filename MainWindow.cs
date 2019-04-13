@@ -15,11 +15,16 @@ namespace CashFlow
         private PlotView MainPlotView;
         private PlotModel MainPlotModel;
 
-        private DateTime StartDate, EndDate;
+        private CurrencyFetcher Fetcher = new CurrencyFetcher();
 
         public MainWindow() : base(Gtk.WindowType.Toplevel)
         {
             Build();
+
+            foreach (string currency in Enum.GetNames(typeof(Currencies)))
+            {
+                CurrencyBaseSelection.AppendText(currency);
+            }
 
             MainPlotModel = new PlotModel();
             MainPlotModel.Axes.Add(new DateTimeAxis
@@ -53,18 +58,18 @@ namespace CashFlow
         protected void OnDateStartEntryFocusGrabbed(object sender, EventArgs e)
         {
             DateTimeDialog dialog;
-            if (StartDate == new DateTime())
+            if (Fetcher.StartAt == new DateTime())
                 dialog = new DateTimeDialog();
             else
-                dialog = new DateTimeDialog(StartDate);
+                dialog = new DateTimeDialog(Fetcher.StartAt);
 
             dialog.Response += delegate (object obj, ResponseArgs resp) {
                 if (resp.ResponseId == ResponseType.Ok)
                 {
-                    StartDate = dialog.Calendar.Date;
-                    DateStartEntry.Text = StartDate.ToString(DateStringFormat);
+                    Fetcher.StartAt = dialog.Calendar.Date;
+                    DateStartEntry.Text = Fetcher.StartAt.ToString(DateStringFormat);
                 }
-                else if (resp.ResponseId != ResponseType.Ok && StartDate == new DateTime())
+                else if (resp.ResponseId != ResponseType.Ok && Fetcher.StartAt == new DateTime())
                 {
                     MessageDialog message = new MessageDialog(dialog, DialogFlags.DestroyWithParent,
                         MessageType.Warning, ButtonsType.Ok, "Başlangıç tarihi seçmediniz.");
@@ -79,18 +84,18 @@ namespace CashFlow
         protected void OnDateEndEntryFocusGrabbed(object sender, EventArgs e)
         {
             DateTimeDialog dialog;
-            if (EndDate == new DateTime())
+            if (Fetcher.EndAt == new DateTime())
                 dialog = new DateTimeDialog();
             else
-                dialog = new DateTimeDialog(EndDate);
+                dialog = new DateTimeDialog(Fetcher.EndAt);
 
             dialog.Response += delegate (object obj, ResponseArgs resp) {
                 if (resp.ResponseId == ResponseType.Ok)
                 {
-                    EndDate = dialog.Calendar.Date;
-                    DateEndEntry.Text = EndDate.ToString(DateStringFormat);
+                    Fetcher.EndAt = dialog.Calendar.Date;
+                    DateEndEntry.Text = Fetcher.EndAt.ToString(DateStringFormat);
                 }
-                else if (resp.ResponseId != ResponseType.Ok && EndDate == new DateTime())
+                else if (resp.ResponseId != ResponseType.Ok && Fetcher.EndAt == new DateTime())
                 {
                     MessageDialog message = new MessageDialog(dialog, DialogFlags.DestroyWithParent,
                         MessageType.Warning, ButtonsType.Ok, "Bitiş tarihi seçmediniz.");
@@ -102,16 +107,16 @@ namespace CashFlow
             dialog.Destroy();
         }
 
+        protected void OnCurrencyBaseSelectionChanged(object sender, EventArgs e)
+        {
+            ComboBox box = (ComboBox)sender;
+            Enum.TryParse(box.ActiveText, out Fetcher.Base);
+        }
+
         protected void OnCurrencyListButtonClicked(object sender, EventArgs e)
         {
-            CurrencyListDialog dialog = new CurrencyListDialog();
-            dialog.Response += delegate (object obj, ResponseArgs resp)
-            {
-                foreach (Currencies item in dialog.CurrencySelections)
-                {
-                    Console.WriteLine(item);
-                }
-            };
+            CurrencyListDialog dialog = new CurrencyListDialog(Fetcher.Symbols);
+            dialog.Response += (object obj, ResponseArgs resp) => Fetcher.Symbols = dialog.CurrencySelections;
             dialog.Run();
             dialog.Destroy();
         }
@@ -120,8 +125,7 @@ namespace CashFlow
         {
             MainPlotModel.Series.Clear();
 
-            CurrencyFetcher fetcher = new CurrencyFetcher();
-            Dictionary<Currencies, List<Node>> dict = fetcher.Fetch();
+            Dictionary<Currencies, List<Node>> dict = Fetcher.Fetch();
 
             foreach (KeyValuePair<Currencies, List<Node>> pair in dict)
             {
