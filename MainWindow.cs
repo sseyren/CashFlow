@@ -13,6 +13,7 @@ namespace CashFlow
         private const string DateStringFormat = "dd-MM-yyyy";
 
         private PlotView MainPlotView;
+        private PlotModel MainPlotModel;
 
         private DateTime StartDate, EndDate;
 
@@ -20,21 +21,22 @@ namespace CashFlow
         {
             Build();
 
-            PlotModel MainPlotModel = new PlotModel();
+            MainPlotModel = new PlotModel();
             MainPlotModel.Axes.Add(new DateTimeAxis
             {
                 Position = AxisPosition.Bottom,
                 IntervalType = DateTimeIntervalType.Days,
                 StringFormat = "dd-MM\nyyyy",
                 MajorGridlineStyle = LineStyle.Solid,
-                Minimum = DateTimeAxis.ToDouble(DateTime.Now.AddDays(-30)),
-                Maximum = DateTimeAxis.ToDouble(DateTime.Now.AddDays(30))
+                Minimum = DateTimeAxis.ToDouble(new DateTime(2018, 1, 1)),
+                Maximum = DateTimeAxis.ToDouble(new DateTime(2018, 9, 1))
             });
             MainPlotModel.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
                 MajorGridlineStyle = LineStyle.Solid,
                 MinorGridlineStyle = LineStyle.Dot,
+                TickStyle = TickStyle.Outside
             });
 
             MainPlotView = new PlotView { Model = MainPlotModel };
@@ -112,6 +114,27 @@ namespace CashFlow
             };
             dialog.Run();
             dialog.Destroy();
+        }
+
+        protected void OnFetchButtonClicked(object sender, EventArgs e)
+        {
+            MainPlotModel.Series.Clear();
+
+            CurrencyFetcher fetcher = new CurrencyFetcher();
+            Dictionary<Currencies, List<Node>> dict = fetcher.Fetch();
+
+            foreach (KeyValuePair<Currencies, List<Node>> pair in dict)
+            {
+                MainPlotModel.Series.Add(new LineSeries
+                {
+                    Title = pair.Key.ToString(),
+                    ItemsSource = pair.Value,
+                    DataFieldX = "Time",
+                    DataFieldY = "Value",
+                    MarkerType = MarkerType.Circle
+                });
+            }
+            MainPlotModel.InvalidatePlot(true);
         }
 
 

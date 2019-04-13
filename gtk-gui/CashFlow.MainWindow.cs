@@ -266,6 +266,7 @@ namespace CashFlow
 			this.DateStartEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateStartEntryFocusGrabbed);
 			this.DateEndEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateEndEntryFocusGrabbed);
 			this.CurrencyListButton.Clicked += new global::System.EventHandler(this.OnCurrencyListButtonClicked);
+			this.FetchButton.Clicked += new global::System.EventHandler(this.OnFetchButtonClicked);
 		}
 	}
 }

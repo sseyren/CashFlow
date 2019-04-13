@@ -269,6 +269,7 @@
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">Verileri Getir</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnFetchButtonClicked" />
               </widget>
               <packing>
                 <property name="Position">2</property>
