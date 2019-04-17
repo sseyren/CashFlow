@@ -48,12 +48,22 @@ namespace CashFlow
 
         protected void OnResponse(object o, ResponseArgs args)
         {
-            CurrencySelections.Clear();
-
-            for (int i = 0; i < CheckButtons.Length; i++)
+            if (args.ResponseId == ResponseType.Ok)
             {
-                if (CheckButtons[i].Active)
-                    CurrencySelections.Add((Currencies)i);
+                CurrencySelections.Clear();
+                for (int i = 0; i < CheckButtons.Length; i++)
+                {
+                    if (CheckButtons[i].Active)
+                        CurrencySelections.Add((Currencies)i);
+                }
+
+                if (CurrencySelections.Count == 0)
+                {
+                    MessageDialog message = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                        MessageType.Warning, ButtonsType.Ok, "Gösterilecek kur seçmediniz.");
+                    message.Run();
+                    message.Destroy();
+                }
             }
         }
 
