@@ -306,6 +306,7 @@
           <widget class="Gtk.Statusbar" id="MainStatusBar">
             <property name="MemberName" />
             <property name="Spacing">6</property>
+            <property name="BorderWidth">2</property>
             <child>
               <placeholder />
             </child>

@@ -13,12 +13,20 @@ namespace CashFlow
     public partial class MainWindow : Gtk.Window
     {
         private const string DateStringFormat = "dd-MM-yyyy";
+        private const string ReadyStatusText = "Hazır.";
 
         private PlotView MainPlotView;
         private PlotModel MainPlotModel;
         private PlotController MainPlotController = new PlotController();
 
         private CurrencyFetcher Fetcher = new CurrencyFetcher();
+
+        private void ChangeStatus(string message)
+        {
+            const uint MsgID = 0;
+            MainStatusBar.Pop(MsgID);
+            MainStatusBar.Push(MsgID, message);
+        }
 
         public MainWindow() : base(Gtk.WindowType.Toplevel)
         {
@@ -55,6 +63,8 @@ namespace CashFlow
             MainPlotView = new PlotView { Model = MainPlotModel, Controller = MainPlotController };
             MainPlotAlignment.Add(MainPlotView);
             MainPlotView.Show();
+
+            ChangeStatus(ReadyStatusText);
         }
 
         protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -135,6 +145,7 @@ namespace CashFlow
         {
             if (Interlocked.CompareExchange(ref FetchThreadFlag, 1, 0) == 0)
             {
+                Application.Invoke((sender, e) => ChangeStatus("Veriler getiriliyor..."));
                 try
                 {
                     Dictionary<Currencies, List<Node>> dict = Fetcher.Fetch();
@@ -179,6 +190,7 @@ namespace CashFlow
                         dialog.Destroy();
                     });
                 }
+                Application.Invoke((sender, e) => ChangeStatus(ReadyStatusText));
 
                 Interlocked.Decrement(ref FetchThreadFlag);
             }

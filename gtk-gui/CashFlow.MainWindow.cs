@@ -250,6 +250,7 @@ namespace CashFlow
 			this.MainStatusBar = new global::Gtk.Statusbar();
 			this.MainStatusBar.Name = "MainStatusBar";
 			this.MainStatusBar.Spacing = 6;
+			this.MainStatusBar.BorderWidth = ((uint)(2));
 			this.MainVbox.Add(this.MainStatusBar);
 			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainStatusBar]));
 			w20.PackType = ((global::Gtk.PackType)(1));
