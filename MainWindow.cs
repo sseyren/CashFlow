@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading;
 using Gtk;
 using OxyPlot;
 using OxyPlot.GtkSharp;
@@ -128,44 +129,74 @@ namespace CashFlow
             dialog.Destroy();
         }
 
-        protected void OnFetchButtonClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                Dictionary<Currencies, List<Node>> dict = Fetcher.Fetch();
+        private static int FetchThreadFlag;
 
-                MainPlotModel.Series.Clear();
-                foreach (KeyValuePair<Currencies, List<Node>> pair in dict)
+        private void FetchThread()
+        {
+            if (Interlocked.CompareExchange(ref FetchThreadFlag, 1, 0) == 0)
+            {
+                try
                 {
-                    MainPlotModel.Series.Add(new LineSeries
+                    Dictionary<Currencies, List<Node>> dict = Fetcher.Fetch();
+                    Application.Invoke(delegate
                     {
-                        Title = pair.Key.ToString(),
-                        ItemsSource = pair.Value,
-                        DataFieldX = "Time",
-                        DataFieldY = "Value",
-                        MarkerType = MarkerType.Circle
+                        MainPlotModel.Series.Clear();
+                        foreach (KeyValuePair<Currencies, List<Node>> pair in dict)
+                        {
+                            MainPlotModel.Series.Add(new LineSeries
+                            {
+                                Title = pair.Key.ToString(),
+                                ItemsSource = pair.Value,
+                                DataFieldX = "Time",
+                                DataFieldY = "Value",
+                                MarkerType = MarkerType.Circle
+                            });
+                        }
+                        MainPlotModel.InvalidatePlot(true);
                     });
                 }
-                MainPlotModel.InvalidatePlot(true);
+                catch (Exception ex) when (ex is DateException || ex is SymbolsException)
+                {
+                    Application.Invoke(delegate
+                    {
+                        MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                            MessageType.Error, ButtonsType.Ok, ex.Message);
+                        dialog.Run();
+                        dialog.Destroy();
+                    });
+                }
+                catch (WebException ex)
+                {
+                    Application.Invoke(delegate
+                    {
+                        MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                            MessageType.Error, ButtonsType.Ok,
+                        "Sunucuya istekte bulunurken bir hata ile karşılaşıldı.\n\n" +
+                        "Mesaj: " + ex.Message + "\n" +
+                        "HResult: " + ex.HResult + "\n" +
+                        "Status: " + ex.Status);
+                        dialog.Run();
+                        dialog.Destroy();
+                    });
+                }
+
+                Interlocked.Decrement(ref FetchThreadFlag);
             }
-            catch (Exception ex) when (ex is DateException || ex is SymbolsException)
+            else
             {
-                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
-                    MessageType.Error, ButtonsType.Ok, ex.Message);
-                dialog.Run();
-                dialog.Destroy();
+                Application.Invoke(delegate {
+                    MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                        MessageType.Error, ButtonsType.Ok, "Lütfen çalışan işlemin bitmesini bekleyin.");
+                    dialog.Run();
+                    dialog.Destroy();
+                });
             }
-            catch (WebException ex)
-            {
-                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
-                    MessageType.Error, ButtonsType.Ok,
-                    "Sunucuya istekte bulunurken bir hata ile karşılaşıldı.\n\n" +
-                    "Mesaj: " + ex.Message + "\n" + 
-                    "HResult: " + ex.HResult + "\n" + 
-                    "Status: " + ex.Status);
-                dialog.Run();
-                dialog.Destroy();
-            }
+        }
+
+        protected void OnFetchButtonClicked(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(new ThreadStart(FetchThread));
+            thread.Start();
         }
 
 
