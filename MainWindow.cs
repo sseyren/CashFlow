@@ -49,8 +49,6 @@ namespace CashFlow
                 IntervalType = DateTimeIntervalType.Days,
                 StringFormat = "dd-MM\nyyyy",
                 MajorGridlineStyle = LineStyle.Solid,
-                Minimum = DateTimeAxis.ToDouble(Fetcher.StartAt),
-                Maximum = DateTimeAxis.ToDouble(Fetcher.EndAt),
                 MinimumMajorStep = 1
             });
             MainPlotModel.Axes.Add(new LinearAxis
@@ -165,6 +163,7 @@ namespace CashFlow
                             });
                         }
                         MainPlotModel.InvalidatePlot(true);
+                        MainPlotModel.ResetAllAxes();
                     });
                 }
                 catch (Exception ex) when (ex is DateException || ex is SymbolsException)
