@@ -480,6 +480,19 @@
             <property name="AutoSize">True</property>
           </packing>
         </child>
+        <child>
+          <widget class="Gtk.Label" id="TipLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">İpucu: İmleci kurun üstünde bekletirseniz tam adı belirecektir.</property>
+            <property name="Justify">Center</property>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
       </widget>
     </child>
     <child internal-child="ActionArea">

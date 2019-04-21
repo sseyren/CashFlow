@@ -34,7 +34,13 @@ namespace CashFlow
 
             for (uint i = 0; i < (uint)CurrencyArray.Length; i++)
             {
-                CheckButtons[i] = new CheckButton { Label = CurrencyArray.GetValue(i).ToString() };
+                Currencies current = (Currencies)CurrencyArray.GetValue(i);
+                CheckButtons[i] = new CheckButton
+                {
+                    Label = current.ToString(),
+                    TooltipText = current.GetStringValue()
+                };
+
                 if ( CurrencySelections.Contains((Currencies)i) )
                     CheckButtons[i].Active = true;
 

@@ -35,8 +35,8 @@ namespace CashFlow
             DateStartEntry.Text = Fetcher.StartAt.ToString(DateStringFormat);
             DateEndEntry.Text = Fetcher.EndAt.ToString(DateStringFormat);
 
-            foreach (string currency in Enum.GetNames(typeof(Currencies)))
-                CurrencyBaseSelection.AppendText(currency);
+            foreach (Currencies currency in Enum.GetValues(typeof(Currencies)))
+                CurrencyBaseSelection.AppendText(currency.ToString() + " - " + currency.GetStringValue());
             CurrencyBaseSelection.Active = (int)Fetcher.Base;
 
             MainPlotController.BindMouseDown(OxyMouseButton.Left, PlotCommands.PanAt);
@@ -127,7 +127,7 @@ namespace CashFlow
         protected void OnCurrencyBaseSelectionChanged(object sender, EventArgs e)
         {
             ComboBox box = (ComboBox)sender;
-            Enum.TryParse(box.ActiveText, out Fetcher.Base);
+            Fetcher.Base = (Currencies)box.Active;
         }
 
         protected void OnCurrencyListButtonClicked(object sender, EventArgs e)
@@ -155,7 +155,7 @@ namespace CashFlow
                         {
                             MainPlotModel.Series.Add(new LineSeries
                             {
-                                Title = pair.Key.ToString(),
+                                Title = pair.Key.ToString() + " - " + pair.Key.GetStringValue(),
                                 ItemsSource = pair.Value,
                                 DataFieldX = "Time",
                                 DataFieldY = "Value",

@@ -14,6 +14,8 @@ namespace CashFlow
 
 		private global::Gtk.Table MainTable;
 
+		private global::Gtk.Label TipLabel;
+
 		private global::Gtk.Button buttonCancel;
 
 		private global::Gtk.Button buttonOk;
@@ -84,12 +86,22 @@ namespace CashFlow
 			w1.Add(this.MainTable);
 			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(w1[this.MainTable]));
 			w6.Position = 1;
+			// Container child dialog1_VBox.Gtk.Box+BoxChild
+			this.TipLabel = new global::Gtk.Label();
+			this.TipLabel.Name = "TipLabel";
+			this.TipLabel.LabelProp = global::Mono.Unix.Catalog.GetString("İpucu: İmleci kurun üstünde bekletirseniz tam adı belirecektir.");
+			this.TipLabel.Justify = ((global::Gtk.Justification)(2));
+			w1.Add(this.TipLabel);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(w1[this.TipLabel]));
+			w7.Position = 2;
+			w7.Expand = false;
+			w7.Fill = false;
 			// Internal child CashFlow.CurrencyListDialog.ActionArea
-			global::Gtk.HButtonBox w7 = this.ActionArea;
-			w7.Name = "dialog1_ActionArea";
-			w7.Spacing = 10;
-			w7.BorderWidth = ((uint)(5));
-			w7.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w8 = this.ActionArea;
+			w8.Name = "dialog1_ActionArea";
+			w8.Spacing = 10;
+			w8.BorderWidth = ((uint)(5));
+			w8.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonCancel = new global::Gtk.Button();
 			this.buttonCancel.CanDefault = true;
@@ -99,9 +111,9 @@ namespace CashFlow
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-cancel";
 			this.AddActionWidget(this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonCancel]));
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w9 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonCancel]));
+			w9.Expand = false;
+			w9.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonOk = new global::Gtk.Button();
 			this.buttonOk.CanDefault = true;
@@ -111,10 +123,10 @@ namespace CashFlow
 			this.buttonOk.UseUnderline = true;
 			this.buttonOk.Label = "gtk-ok";
 			this.AddActionWidget(this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w9 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonOk]));
-			w9.Position = 1;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w10 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonOk]));
+			w10.Position = 1;
+			w10.Expand = false;
+			w10.Fill = false;
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
