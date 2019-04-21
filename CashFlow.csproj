@@ -81,6 +81,7 @@
     <Compile Include="gtk-gui\CashFlow.DateTimeDialog.cs" />
     <Compile Include="CurrencyListDialog.cs" />
     <Compile Include="gtk-gui\CashFlow.CurrencyListDialog.cs" />
+    <Compile Include="Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
