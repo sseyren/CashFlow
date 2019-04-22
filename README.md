@@ -8,3 +8,7 @@ Projeyi henüz teslim etmedim, edene kadar eklemeyi düşündüklerim:
 
 - Dışarı aktar seçenekleri
   - PDF, SVG, PNG ve CSV seçenekleri
+
+## Ekran Görüntüleri
+![](https://raw.githubusercontent.com/thesseyren/CashFlow/master/screen-shots/banner-shot.png)
+![](https://raw.githubusercontent.com/thesseyren/CashFlow/master/screen-shots/shot1.png)
