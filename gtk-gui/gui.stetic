@@ -25,19 +25,19 @@
         <property name="Label" translatable="yes">Yardım</property>
         <property name="ShortLabel" translatable="yes">Yardım</property>
       </action>
-      <action id="saveAsAction1">
+      <action id="PDFExportAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">PDF Olarak Dışarı Aktar...</property>
         <property name="ShortLabel" translatable="yes">PDF Olarak Dışarı Aktar...</property>
         <property name="StockId">gtk-save-as</property>
       </action>
-      <action id="saveAsAction">
+      <action id="PNGExportAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">PNG Olarak Dışarı Aktar...</property>
         <property name="ShortLabel" translatable="yes">PNG Olarak Dışarı Aktar...</property>
         <property name="StockId">gtk-save-as</property>
       </action>
-      <action id="saveAsAction2">
+      <action id="SVGExportAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">SVG Olarak Dışarı Aktar...</property>
         <property name="ShortLabel" translatable="yes">SVG Olarak Dışarı Aktar...</property>
@@ -48,38 +48,39 @@
         <property name="Label" translatable="yes">Çıkış</property>
         <property name="ShortLabel" translatable="yes">Çıkış</property>
         <property name="StockId">gtk-close</property>
+        <signal name="Activated" handler="OnCloseActionActivated" />
       </action>
-      <action id="missingİmageAction">
+      <action id="ClearPlotAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Planı Temizle</property>
         <property name="ShortLabel" translatable="yes">Planı Temizle</property>
         <property name="StockId">gtk-missing-image</property>
       </action>
-      <action id="zoomFitAction">
+      <action id="FocusOnDataAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Verilere Odaklan</property>
         <property name="ShortLabel" translatable="yes">Verilere Odaklan</property>
         <property name="StockId">gtk-zoom-fit</property>
       </action>
-      <action id="infoAction">
+      <action id="ShortcutsAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Kısayollar</property>
         <property name="ShortLabel" translatable="yes">Kısayollar</property>
         <property name="StockId">gtk-info</property>
       </action>
-      <action id="aboutAction">
+      <action id="AboutAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Hakkında</property>
         <property name="ShortLabel" translatable="yes">Hakkında</property>
         <property name="StockId">gtk-about</property>
       </action>
-      <action id="saveAsAction3">
+      <action id="CSVExportAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">CSV Olarak Dışarı Aktar...</property>
         <property name="ShortLabel" translatable="yes">CSV Olarak Dışarı Aktar...</property>
         <property name="StockId">gtk-save-as</property>
       </action>
-      <action id="copyAction">
+      <action id="CopyToClipboardAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Planın Resmini Panoya Kopyala</property>
         <property name="ShortLabel" translatable="yes">Planın Resmini Panoya Kopyala</property>
@@ -101,23 +102,23 @@
             <property name="MemberName" />
             <node name="MainMenuBar" type="Menubar">
               <node type="Menu" action="DosyaAction">
-                <node type="Menuitem" action="saveAsAction1" />
-                <node type="Menuitem" action="saveAsAction" />
-                <node type="Menuitem" action="saveAsAction2" />
-                <node type="Menuitem" action="saveAsAction3" />
+                <node type="Menuitem" action="PDFExportAction" />
+                <node type="Menuitem" action="PNGExportAction" />
+                <node type="Menuitem" action="SVGExportAction" />
+                <node type="Menuitem" action="CSVExportAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="CloseAction" />
               </node>
               <node type="Menu" action="PlanAction">
-                <node type="Menuitem" action="missingİmageAction" />
-                <node type="Menuitem" action="zoomFitAction" />
+                <node type="Menuitem" action="ClearPlotAction" />
+                <node type="Menuitem" action="FocusOnDataAction" />
                 <node type="Separator" />
-                <node type="Menuitem" action="copyAction" />
+                <node type="Menuitem" action="CopyToClipboardAction" />
               </node>
               <node type="Menu" action="YardmAction">
-                <node type="Menuitem" action="infoAction" />
+                <node type="Menuitem" action="ShortcutsAction" />
                 <node type="Separator" />
-                <node type="Menuitem" action="aboutAction" />
+                <node type="Menuitem" action="AboutAction" />
               </node>
               <node type="Menu" />
             </node>
