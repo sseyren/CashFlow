@@ -223,7 +223,7 @@ namespace CashFlow
             Application.Quit();
         }
 
-        private ExportProperties GetExportProps(ExportType exportType)
+        private void Export(ExportType exportType)
         {
             ExportProperties props = null;
 
@@ -236,7 +236,7 @@ namespace CashFlow
             export.Destroy();
 
             if (props == null)
-                return null;
+                return;
 
             FileChooserDialog fc = new FileChooserDialog("Kaydedilecek Yeri Seçin", this,
                 FileChooserAction.Save, "Vazgeç", ResponseType.Cancel, "Kaydet", ResponseType.Accept);
@@ -245,92 +245,82 @@ namespace CashFlow
             fc.Destroy();
 
             if (props.FileName == null)
-                return null;
-
-            return props;
-        }
-
-        protected void OnPDFExportActionActivated(object sender, EventArgs e)
-        {
-            ExportProperties props = GetExportProps(ExportType.PDF);
-            if (props == null)
                 return;
 
-            PdfExporter exporter = new PdfExporter
+            if (props.Type == ExportType.PDF)
             {
-                Width = props.Width,
-                Height = props.Height,
-                Background = OxyColor.FromRgb(props.Color[0], props.Color[1], props.Color[2])
-            };
-            try
-            {
-                using (FileStream file = File.Create(props.FileName))
-                    exporter.Export(MainPlotModel, file);
+                PdfExporter exporter = new PdfExporter
+                {
+                    Width = props.Width,
+                    Height = props.Height,
+                    Background = OxyColor.FromRgb(props.Color[0], props.Color[1], props.Color[2])
+                };
+                try
+                {
+                    using (FileStream file = File.Create(props.FileName))
+                        exporter.Export(MainPlotModel, file);
+                }
+                catch (Exception ex)
+                {
+                    MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                        MessageType.Error, ButtonsType.Ok,
+                        "Dışarı aktarılırken bir sorunla karşılaşıldı.\n\n" +
+                        "Mesaj: " + ex.Message);
+                    dialog.Run();
+                    dialog.Destroy();
+                }
             }
-            catch (Exception ex)
+            else if (props.Type == ExportType.PNG)
             {
-                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
-                    MessageType.Error, ButtonsType.Ok,
-                    "Dışarı aktarılırken bir sorunla karşılaşıldı.\n\n" +
-                    "Mesaj: " + ex.Message);
-                dialog.Run();
-                dialog.Destroy();
+                PngExporter exporter = new PngExporter
+                {
+                    Width = (int)props.Width,
+                    Height = (int)props.Height,
+                    Background = OxyColor.FromRgb(props.Color[0], props.Color[1], props.Color[2])
+                };
+                try
+                {
+                    using (FileStream file = File.Create(props.FileName))
+                        exporter.Export(MainPlotModel, file);
+                }
+                catch (Exception ex)
+                {
+                    MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                        MessageType.Error, ButtonsType.Ok,
+                        "Dışarı aktarılırken bir sorunla karşılaşıldı.\n\n" +
+                        "Mesaj: " + ex.Message);
+                    dialog.Run();
+                    dialog.Destroy();
+                }
             }
-        }
-
-        protected void OnPNGExportActionActivated(object sender, EventArgs e)
-        {
-            ExportProperties props = GetExportProps(ExportType.PNG);
-            if (props == null)
-                return;
-
-            PngExporter exporter = new PngExporter
+            else if (props.Type == ExportType.SVG)
             {
-                Width = (int)props.Width,
-                Height = (int)props.Height,
-                Background = OxyColor.FromRgb(props.Color[0], props.Color[1], props.Color[2])
-            };
-            try
-            {
-                using (FileStream file = File.Create(props.FileName))
-                    exporter.Export(MainPlotModel, file);
-            }
-            catch (Exception ex)
-            {
-                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
-                    MessageType.Error, ButtonsType.Ok,
-                    "Dışarı aktarılırken bir sorunla karşılaşıldı.\n\n" +
-                    "Mesaj: " + ex.Message);
-                dialog.Run();
-                dialog.Destroy();
-            }
-        }
-
-        protected void OnSVGExportActionActivated(object sender, EventArgs e)
-        {
-            ExportProperties props = GetExportProps(ExportType.SVG);
-            if (props == null)
-                return;
-
-            SvgExporter exporter = new SvgExporter
-            {
-                Width = (int)props.Width,
-                Height = (int)props.Height
-            };
-            try
-            {
-                using (FileStream file = File.Create(props.FileName))
-                    exporter.Export(MainPlotModel, file);
-            }
-            catch (Exception ex)
-            {
-                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
-                    MessageType.Error, ButtonsType.Ok,
-                    "Dışarı aktarılırken bir sorunla karşılaşıldı.\n\n" +
-                    "Mesaj: " + ex.Message);
-                dialog.Run();
-                dialog.Destroy();
+                SvgExporter exporter = new SvgExporter
+                {
+                    Width = (int)props.Width,
+                    Height = (int)props.Height
+                };
+                try
+                {
+                    using (FileStream file = File.Create(props.FileName))
+                        exporter.Export(MainPlotModel, file);
+                }
+                catch (Exception ex)
+                {
+                    MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                        MessageType.Error, ButtonsType.Ok,
+                        "Dışarı aktarılırken bir sorunla karşılaşıldı.\n\n" +
+                        "Mesaj: " + ex.Message);
+                    dialog.Run();
+                    dialog.Destroy();
+                }
             }
         }
+
+        protected void OnPDFExportActionActivated(object sender, EventArgs e) => Export(ExportType.PDF);
+
+        protected void OnPNGExportActionActivated(object sender, EventArgs e) => Export(ExportType.PNG);
+
+        protected void OnSVGExportActionActivated(object sender, EventArgs e) => Export(ExportType.SVG);
     }
 }
