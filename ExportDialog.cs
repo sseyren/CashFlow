@@ -27,6 +27,8 @@ namespace CashFlow
             foreach (ExportType option in Enum.GetValues(typeof(ExportType)))
                 ExportTypeSelection.AppendText(option.ToString());
             ExportTypeSelection.Active = (int)type;
+
+            ColorButton.Color = new Gdk.Color(255, 255, 255);
         }
 
         protected void OnResponse(object o, ResponseArgs args)
@@ -45,6 +47,20 @@ namespace CashFlow
                         (byte)ColorButton.Color.Blue
                     }
                 };
+            }
+        }
+
+        protected void OnExportTypeSelectionChanged(object sender, EventArgs e)
+        {
+            if (ExportTypeSelection.Active == (int)ExportType.SVG)
+            {
+                ColorButton.Hide();
+                label3.Hide();
+            }
+            else
+            {
+                ColorButton.Show();
+                label3.Show();
             }
         }
     }

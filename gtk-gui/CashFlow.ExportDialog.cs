@@ -79,7 +79,7 @@ namespace CashFlow
 			this.WidthInput.Adjustment.PageIncrement = 10D;
 			this.WidthInput.ClimbRate = 1D;
 			this.WidthInput.Numeric = true;
-			this.WidthInput.Value = 1280D;
+			this.WidthInput.Value = 1920D;
 			this.WidthInput.Wrap = true;
 			this.hbox1.Add(this.WidthInput);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.WidthInput]));
@@ -104,7 +104,7 @@ namespace CashFlow
 			this.HeightInput.Adjustment.PageIncrement = 10D;
 			this.HeightInput.ClimbRate = 1D;
 			this.HeightInput.Numeric = true;
-			this.HeightInput.Value = 720D;
+			this.HeightInput.Value = 1080D;
 			this.hbox1.Add(this.HeightInput);
 			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.HeightInput]));
 			w6.Position = 2;
@@ -190,6 +190,7 @@ namespace CashFlow
 			this.DefaultHeight = 279;
 			this.Show();
 			this.Response += new global::Gtk.ResponseHandler(this.OnResponse);
+			this.ExportTypeSelection.Changed += new global::System.EventHandler(this.OnExportTypeSelectionChanged);
 		}
 	}
 }
