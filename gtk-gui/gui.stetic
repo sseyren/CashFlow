@@ -10,15 +10,80 @@
   </import>
   <widget class="Gtk.Window" id="CashFlow.MainWindow" design-size="1084 450">
     <action-group name="Default">
-      <action id="HakkndaAction">
+      <action id="DosyaAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Hakkında</property>
-        <property name="ShortLabel" translatable="yes">Hakkında</property>
+        <property name="Label" translatable="yes">Dosya</property>
+        <property name="ShortLabel" translatable="yes">Dosya</property>
       </action>
-      <action id="HakkndaAction1">
+      <action id="PlanAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Plan</property>
+        <property name="ShortLabel" translatable="yes">Plan</property>
+      </action>
+      <action id="YardmAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Yardım</property>
+        <property name="ShortLabel" translatable="yes">Yardım</property>
+      </action>
+      <action id="saveAsAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">PDF Olarak Dışarı Aktar...</property>
+        <property name="ShortLabel" translatable="yes">PDF Olarak Dışarı Aktar...</property>
+        <property name="StockId">gtk-save-as</property>
+      </action>
+      <action id="saveAsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">PNG Olarak Dışarı Aktar...</property>
+        <property name="ShortLabel" translatable="yes">PNG Olarak Dışarı Aktar...</property>
+        <property name="StockId">gtk-save-as</property>
+      </action>
+      <action id="saveAsAction2">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">SVG Olarak Dışarı Aktar...</property>
+        <property name="ShortLabel" translatable="yes">SVG Olarak Dışarı Aktar...</property>
+        <property name="StockId">gtk-save-as</property>
+      </action>
+      <action id="CloseAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Çıkış</property>
+        <property name="ShortLabel" translatable="yes">Çıkış</property>
+        <property name="StockId">gtk-close</property>
+      </action>
+      <action id="missingİmageAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Planı Temizle</property>
+        <property name="ShortLabel" translatable="yes">Planı Temizle</property>
+        <property name="StockId">gtk-missing-image</property>
+      </action>
+      <action id="zoomFitAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Verilere Odaklan</property>
+        <property name="ShortLabel" translatable="yes">Verilere Odaklan</property>
+        <property name="StockId">gtk-zoom-fit</property>
+      </action>
+      <action id="infoAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Kısayollar</property>
+        <property name="ShortLabel" translatable="yes">Kısayollar</property>
+        <property name="StockId">gtk-info</property>
+      </action>
+      <action id="aboutAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Hakkında</property>
         <property name="ShortLabel" translatable="yes">Hakkında</property>
+        <property name="StockId">gtk-about</property>
+      </action>
+      <action id="saveAsAction3">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">CSV Olarak Dışarı Aktar...</property>
+        <property name="ShortLabel" translatable="yes">CSV Olarak Dışarı Aktar...</property>
+        <property name="StockId">gtk-save-as</property>
+      </action>
+      <action id="copyAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Planın Resmini Panoya Kopyala</property>
+        <property name="ShortLabel" translatable="yes">Planın Resmini Panoya Kopyala</property>
+        <property name="StockId">gtk-copy</property>
       </action>
     </action-group>
     <property name="MemberName" />
@@ -32,10 +97,29 @@
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <child>
-          <widget class="Gtk.MenuBar" id="menubar2">
+          <widget class="Gtk.MenuBar" id="MainMenuBar">
             <property name="MemberName" />
-            <node name="menubar2" type="Menubar">
-              <node type="Menu" action="HakkndaAction1" />
+            <node name="MainMenuBar" type="Menubar">
+              <node type="Menu" action="DosyaAction">
+                <node type="Menuitem" action="saveAsAction1" />
+                <node type="Menuitem" action="saveAsAction" />
+                <node type="Menuitem" action="saveAsAction2" />
+                <node type="Menuitem" action="saveAsAction3" />
+                <node type="Separator" />
+                <node type="Menuitem" action="CloseAction" />
+              </node>
+              <node type="Menu" action="PlanAction">
+                <node type="Menuitem" action="missingİmageAction" />
+                <node type="Menuitem" action="zoomFitAction" />
+                <node type="Separator" />
+                <node type="Menuitem" action="copyAction" />
+              </node>
+              <node type="Menu" action="YardmAction">
+                <node type="Menuitem" action="infoAction" />
+                <node type="Separator" />
+                <node type="Menuitem" action="aboutAction" />
+              </node>
+              <node type="Menu" />
             </node>
           </widget>
           <packing>

@@ -6,13 +6,35 @@ namespace CashFlow
 	{
 		private global::Gtk.UIManager UIManager;
 
-		private global::Gtk.Action HakkndaAction;
+		private global::Gtk.Action DosyaAction;
 
-		private global::Gtk.Action HakkndaAction1;
+		private global::Gtk.Action PlanAction;
+
+		private global::Gtk.Action YardmAction;
+
+		private global::Gtk.Action saveAsAction1;
+
+		private global::Gtk.Action saveAsAction;
+
+		private global::Gtk.Action saveAsAction2;
+
+		private global::Gtk.Action CloseAction;
+
+		private global::Gtk.Action missingİmageAction;
+
+		private global::Gtk.Action zoomFitAction;
+
+		private global::Gtk.Action infoAction;
+
+		private global::Gtk.Action aboutAction;
+
+		private global::Gtk.Action saveAsAction3;
+
+		private global::Gtk.Action copyAction;
 
 		private global::Gtk.VBox MainVbox;
 
-		private global::Gtk.MenuBar menubar2;
+		private global::Gtk.MenuBar MainMenuBar;
 
 		private global::Gtk.HBox PropsVbox;
 
@@ -60,12 +82,45 @@ namespace CashFlow
 			// Widget CashFlow.MainWindow
 			this.UIManager = new global::Gtk.UIManager();
 			global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup("Default");
-			this.HakkndaAction = new global::Gtk.Action("HakkndaAction", global::Mono.Unix.Catalog.GetString("Hakkında"), null, null);
-			this.HakkndaAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Hakkında");
-			w1.Add(this.HakkndaAction, null);
-			this.HakkndaAction1 = new global::Gtk.Action("HakkndaAction1", global::Mono.Unix.Catalog.GetString("Hakkında"), null, null);
-			this.HakkndaAction1.ShortLabel = global::Mono.Unix.Catalog.GetString("Hakkında");
-			w1.Add(this.HakkndaAction1, null);
+			this.DosyaAction = new global::Gtk.Action("DosyaAction", global::Mono.Unix.Catalog.GetString("Dosya"), null, null);
+			this.DosyaAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Dosya");
+			w1.Add(this.DosyaAction, null);
+			this.PlanAction = new global::Gtk.Action("PlanAction", global::Mono.Unix.Catalog.GetString("Plan"), null, null);
+			this.PlanAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Plan");
+			w1.Add(this.PlanAction, null);
+			this.YardmAction = new global::Gtk.Action("YardmAction", global::Mono.Unix.Catalog.GetString("Yardım"), null, null);
+			this.YardmAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Yardım");
+			w1.Add(this.YardmAction, null);
+			this.saveAsAction1 = new global::Gtk.Action("saveAsAction1", global::Mono.Unix.Catalog.GetString("PDF Olarak Dışarı Aktar..."), null, "gtk-save-as");
+			this.saveAsAction1.ShortLabel = global::Mono.Unix.Catalog.GetString("PDF Olarak Dışarı Aktar...");
+			w1.Add(this.saveAsAction1, null);
+			this.saveAsAction = new global::Gtk.Action("saveAsAction", global::Mono.Unix.Catalog.GetString("PNG Olarak Dışarı Aktar..."), null, "gtk-save-as");
+			this.saveAsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("PNG Olarak Dışarı Aktar...");
+			w1.Add(this.saveAsAction, null);
+			this.saveAsAction2 = new global::Gtk.Action("saveAsAction2", global::Mono.Unix.Catalog.GetString("SVG Olarak Dışarı Aktar..."), null, "gtk-save-as");
+			this.saveAsAction2.ShortLabel = global::Mono.Unix.Catalog.GetString("SVG Olarak Dışarı Aktar...");
+			w1.Add(this.saveAsAction2, null);
+			this.CloseAction = new global::Gtk.Action("CloseAction", global::Mono.Unix.Catalog.GetString("Çıkış"), null, "gtk-close");
+			this.CloseAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Çıkış");
+			w1.Add(this.CloseAction, null);
+			this.missingİmageAction = new global::Gtk.Action("missingİmageAction", global::Mono.Unix.Catalog.GetString("Planı Temizle"), null, "gtk-missing-image");
+			this.missingİmageAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Planı Temizle");
+			w1.Add(this.missingİmageAction, null);
+			this.zoomFitAction = new global::Gtk.Action("zoomFitAction", global::Mono.Unix.Catalog.GetString("Verilere Odaklan"), null, "gtk-zoom-fit");
+			this.zoomFitAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Verilere Odaklan");
+			w1.Add(this.zoomFitAction, null);
+			this.infoAction = new global::Gtk.Action("infoAction", global::Mono.Unix.Catalog.GetString("Kısayollar"), null, "gtk-info");
+			this.infoAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Kısayollar");
+			w1.Add(this.infoAction, null);
+			this.aboutAction = new global::Gtk.Action("aboutAction", global::Mono.Unix.Catalog.GetString("Hakkında"), null, "gtk-about");
+			this.aboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Hakkında");
+			w1.Add(this.aboutAction, null);
+			this.saveAsAction3 = new global::Gtk.Action("saveAsAction3", global::Mono.Unix.Catalog.GetString("CSV Olarak Dışarı Aktar..."), null, "gtk-save-as");
+			this.saveAsAction3.ShortLabel = global::Mono.Unix.Catalog.GetString("CSV Olarak Dışarı Aktar...");
+			w1.Add(this.saveAsAction3, null);
+			this.copyAction = new global::Gtk.Action("copyAction", global::Mono.Unix.Catalog.GetString("Planın Resmini Panoya Kopyala"), null, "gtk-copy");
+			this.copyAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Planın Resmini Panoya Kopyala");
+			w1.Add(this.copyAction, null);
 			this.UIManager.InsertActionGroup(w1, 0);
 			this.AddAccelGroup(this.UIManager.AccelGroup);
 			this.Name = "CashFlow.MainWindow";
@@ -78,12 +133,11 @@ namespace CashFlow
 			this.MainVbox.Name = "MainVbox";
 			this.MainVbox.Spacing = 6;
 			// Container child MainVbox.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString("<ui><menubar name=\'menubar2\'><menu name=\'HakkndaAction1\' action=\'HakkndaAction1\'/" +
-					"></menubar></ui>");
-			this.menubar2 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/menubar2")));
-			this.menubar2.Name = "menubar2";
-			this.MainVbox.Add(this.menubar2);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.menubar2]));
+			this.UIManager.AddUiFromString(@"<ui><menubar name='MainMenuBar'><menu name='DosyaAction' action='DosyaAction'><menuitem name='saveAsAction1' action='saveAsAction1'/><menuitem name='saveAsAction' action='saveAsAction'/><menuitem name='saveAsAction2' action='saveAsAction2'/><menuitem name='saveAsAction3' action='saveAsAction3'/><separator/><menuitem name='CloseAction' action='CloseAction'/></menu><menu name='PlanAction' action='PlanAction'><menuitem name='missingİmageAction' action='missingİmageAction'/><menuitem name='zoomFitAction' action='zoomFitAction'/><separator/><menuitem name='copyAction' action='copyAction'/></menu><menu name='YardmAction' action='YardmAction'><menuitem name='infoAction' action='infoAction'/><separator/><menuitem name='aboutAction' action='aboutAction'/></menu><menu/></menubar></ui>");
+			this.MainMenuBar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/MainMenuBar")));
+			this.MainMenuBar.Name = "MainMenuBar";
+			this.MainVbox.Add(this.MainMenuBar);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainMenuBar]));
 			w2.Position = 0;
 			w2.Expand = false;
 			w2.Fill = false;
