@@ -318,6 +318,9 @@ namespace CashFlow
 			}
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+			this.PDFExportAction.Activated += new global::System.EventHandler(this.OnPDFExportActionActivated);
+			this.PNGExportAction.Activated += new global::System.EventHandler(this.OnPNGExportActionActivated);
+			this.SVGExportAction.Activated += new global::System.EventHandler(this.OnSVGExportActionActivated);
 			this.CloseAction.Activated += new global::System.EventHandler(this.OnCloseActionActivated);
 			this.DateStartEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateStartEntryFocusGrabbed);
 			this.DateEndEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateEndEntryFocusGrabbed);

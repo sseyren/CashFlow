@@ -11,8 +11,9 @@ namespace CashFlow
     public class ExportProperties
     {
         public ExportType Type;
-        public double Height, Width;
+        public uint Height, Width;
         public byte[] Color;
+        public string FileName;
     }
 
     public partial class ExportDialog : Gtk.Dialog
@@ -35,8 +36,8 @@ namespace CashFlow
                 Properties = new ExportProperties
                 {
                     Type = (ExportType)ExportTypeSelection.Active,
-                    Height = HeightInput.Value,
-                    Width = WidthInput.Value,
+                    Height = (uint)HeightInput.Value,
+                    Width = (uint)WidthInput.Value,
                     Color = new byte[3]
                     {
                         (byte)ColorButton.Color.Red,
