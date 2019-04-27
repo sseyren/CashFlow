@@ -31,6 +31,11 @@ namespace CashFlow
             ColorButton.Color = new Gdk.Color(255, 255, 255);
         }
 
+        private static byte MapToByte(ushort color)
+        {
+            return Convert.ToByte((Convert.ToDouble(color) / Convert.ToDouble(ushort.MaxValue)) * byte.MaxValue);
+        }
+
         protected void OnResponse(object o, ResponseArgs args)
         {
             if (args.ResponseId == ResponseType.Ok)
@@ -42,9 +47,9 @@ namespace CashFlow
                     Width = (uint)WidthInput.Value,
                     Color = new byte[3]
                     {
-                        (byte)ColorButton.Color.Red,
-                        (byte)ColorButton.Color.Green,
-                        (byte)ColorButton.Color.Blue
+                        MapToByte(ColorButton.Color.Red),
+                        MapToByte(ColorButton.Color.Green),
+                        MapToByte(ColorButton.Color.Blue)
                     }
                 };
             }
