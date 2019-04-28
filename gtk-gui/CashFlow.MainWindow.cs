@@ -44,9 +44,13 @@ namespace CashFlow
 
 		private global::Gtk.Table DateFrameTable;
 
+		private global::Gtk.Button DateEndButton;
+
 		private global::Gtk.Entry DateEndEntry;
 
 		private global::Gtk.Label DateEndLabel;
+
+		private global::Gtk.Button DateStartButton;
 
 		private global::Gtk.Entry DateStartEntry;
 
@@ -157,54 +161,80 @@ namespace CashFlow
 			this.GtkAlignment.RightPadding = ((uint)(6));
 			this.GtkAlignment.BottomPadding = ((uint)(6));
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			this.DateFrameTable = new global::Gtk.Table(((uint)(2)), ((uint)(2)), false);
+			this.DateFrameTable = new global::Gtk.Table(((uint)(2)), ((uint)(3)), false);
 			this.DateFrameTable.Name = "DateFrameTable";
 			this.DateFrameTable.RowSpacing = ((uint)(6));
 			this.DateFrameTable.ColumnSpacing = ((uint)(6));
 			// Container child DateFrameTable.Gtk.Table+TableChild
+			this.DateEndButton = new global::Gtk.Button();
+			this.DateEndButton.CanFocus = true;
+			this.DateEndButton.Name = "DateEndButton";
+			this.DateEndButton.UseUnderline = true;
+			this.DateEndButton.Label = global::Mono.Unix.Catalog.GetString("Seç...");
+			this.DateFrameTable.Add(this.DateEndButton);
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateEndButton]));
+			w3.TopAttach = ((uint)(1));
+			w3.BottomAttach = ((uint)(2));
+			w3.LeftAttach = ((uint)(2));
+			w3.RightAttach = ((uint)(3));
+			w3.XOptions = ((global::Gtk.AttachOptions)(4));
+			w3.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child DateFrameTable.Gtk.Table+TableChild
 			this.DateEndEntry = new global::Gtk.Entry();
-			this.DateEndEntry.CanFocus = true;
+			this.DateEndEntry.WidthRequest = 140;
 			this.DateEndEntry.Name = "DateEndEntry";
 			this.DateEndEntry.Text = global::Mono.Unix.Catalog.GetString("-tarih seçin-");
 			this.DateEndEntry.IsEditable = false;
 			this.DateEndEntry.InvisibleChar = '•';
 			this.DateFrameTable.Add(this.DateEndEntry);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateEndEntry]));
-			w3.TopAttach = ((uint)(1));
-			w3.BottomAttach = ((uint)(2));
-			w3.LeftAttach = ((uint)(1));
-			w3.RightAttach = ((uint)(2));
-			w3.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateEndEntry]));
+			w4.TopAttach = ((uint)(1));
+			w4.BottomAttach = ((uint)(2));
+			w4.LeftAttach = ((uint)(1));
+			w4.RightAttach = ((uint)(2));
+			w4.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child DateFrameTable.Gtk.Table+TableChild
 			this.DateEndLabel = new global::Gtk.Label();
 			this.DateEndLabel.Name = "DateEndLabel";
 			this.DateEndLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Bitiş:");
 			this.DateFrameTable.Add(this.DateEndLabel);
-			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateEndLabel]));
-			w4.TopAttach = ((uint)(1));
-			w4.BottomAttach = ((uint)(2));
-			w4.XOptions = ((global::Gtk.AttachOptions)(4));
-			w4.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateEndLabel]));
+			w5.TopAttach = ((uint)(1));
+			w5.BottomAttach = ((uint)(2));
+			w5.XOptions = ((global::Gtk.AttachOptions)(4));
+			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child DateFrameTable.Gtk.Table+TableChild
+			this.DateStartButton = new global::Gtk.Button();
+			this.DateStartButton.CanFocus = true;
+			this.DateStartButton.Name = "DateStartButton";
+			this.DateStartButton.UseUnderline = true;
+			this.DateStartButton.Label = global::Mono.Unix.Catalog.GetString("Seç...");
+			this.DateFrameTable.Add(this.DateStartButton);
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateStartButton]));
+			w6.LeftAttach = ((uint)(2));
+			w6.RightAttach = ((uint)(3));
+			w6.XOptions = ((global::Gtk.AttachOptions)(4));
+			w6.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child DateFrameTable.Gtk.Table+TableChild
 			this.DateStartEntry = new global::Gtk.Entry();
-			this.DateStartEntry.CanFocus = true;
+			this.DateStartEntry.WidthRequest = 140;
 			this.DateStartEntry.Name = "DateStartEntry";
 			this.DateStartEntry.Text = global::Mono.Unix.Catalog.GetString("-tarih seçin-");
 			this.DateStartEntry.IsEditable = false;
 			this.DateStartEntry.InvisibleChar = '•';
 			this.DateFrameTable.Add(this.DateStartEntry);
-			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateStartEntry]));
-			w5.LeftAttach = ((uint)(1));
-			w5.RightAttach = ((uint)(2));
-			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateStartEntry]));
+			w7.LeftAttach = ((uint)(1));
+			w7.RightAttach = ((uint)(2));
+			w7.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child DateFrameTable.Gtk.Table+TableChild
 			this.DateStartLabel = new global::Gtk.Label();
 			this.DateStartLabel.Name = "DateStartLabel";
 			this.DateStartLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Başlangıç:");
 			this.DateFrameTable.Add(this.DateStartLabel);
-			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateStartLabel]));
-			w6.XOptions = ((global::Gtk.AttachOptions)(4));
-			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.DateFrameTable[this.DateStartLabel]));
+			w8.XOptions = ((global::Gtk.AttachOptions)(4));
+			w8.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.GtkAlignment.Add(this.DateFrameTable);
 			this.DateFrame.Add(this.GtkAlignment);
 			this.DateFrameLabel1 = new global::Gtk.Label();
@@ -213,10 +243,10 @@ namespace CashFlow
 			this.DateFrameLabel1.UseMarkup = true;
 			this.DateFrame.LabelWidget = this.DateFrameLabel1;
 			this.PropsVbox.Add(this.DateFrame);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.DateFrame]));
-			w9.Position = 0;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.DateFrame]));
+			w11.Position = 0;
+			w11.Expand = false;
+			w11.Fill = false;
 			// Container child PropsVbox.Gtk.Box+BoxChild
 			this.CurrencyFrame = new global::Gtk.Frame();
 			this.CurrencyFrame.Name = "CurrencyFrame";
@@ -240,21 +270,21 @@ namespace CashFlow
 			this.CurrencyBaseLabel.Name = "CurrencyBaseLabel";
 			this.CurrencyBaseLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Taban Kur:");
 			this.CurrencyHbox.Add(this.CurrencyBaseLabel);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.CurrencyHbox[this.CurrencyBaseLabel]));
-			w10.Position = 0;
-			w10.Expand = false;
-			w10.Fill = false;
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.CurrencyHbox[this.CurrencyBaseLabel]));
+			w12.Position = 0;
+			w12.Expand = false;
+			w12.Fill = false;
 			// Container child CurrencyHbox.Gtk.Box+BoxChild
 			this.CurrencyBaseSelection = global::Gtk.ComboBox.NewText();
 			this.CurrencyBaseSelection.Name = "CurrencyBaseSelection";
 			this.CurrencyHbox.Add(this.CurrencyBaseSelection);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.CurrencyHbox[this.CurrencyBaseSelection]));
-			w11.Position = 1;
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.CurrencyHbox[this.CurrencyBaseSelection]));
+			w13.Position = 1;
 			this.CurrencyVbox.Add(this.CurrencyHbox);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.CurrencyVbox[this.CurrencyHbox]));
-			w12.Position = 0;
-			w12.Expand = false;
-			w12.Fill = false;
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.CurrencyVbox[this.CurrencyHbox]));
+			w14.Position = 0;
+			w14.Expand = false;
+			w14.Fill = false;
 			// Container child CurrencyVbox.Gtk.Box+BoxChild
 			this.CurrencyListButton = new global::Gtk.Button();
 			this.CurrencyListButton.CanFocus = true;
@@ -262,10 +292,10 @@ namespace CashFlow
 			this.CurrencyListButton.UseUnderline = true;
 			this.CurrencyListButton.Label = global::Mono.Unix.Catalog.GetString("Gösterilecek Kurlar");
 			this.CurrencyVbox.Add(this.CurrencyListButton);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.CurrencyVbox[this.CurrencyListButton]));
-			w13.Position = 1;
-			w13.Expand = false;
-			w13.Fill = false;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.CurrencyVbox[this.CurrencyListButton]));
+			w15.Position = 1;
+			w15.Expand = false;
+			w15.Fill = false;
 			this.GtkAlignment1.Add(this.CurrencyVbox);
 			this.CurrencyFrame.Add(this.GtkAlignment1);
 			this.CurrencyFrameLabel = new global::Gtk.Label();
@@ -274,10 +304,10 @@ namespace CashFlow
 			this.CurrencyFrameLabel.UseMarkup = true;
 			this.CurrencyFrame.LabelWidget = this.CurrencyFrameLabel;
 			this.PropsVbox.Add(this.CurrencyFrame);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.CurrencyFrame]));
-			w16.Position = 1;
-			w16.Expand = false;
-			w16.Fill = false;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.CurrencyFrame]));
+			w18.Position = 1;
+			w18.Expand = false;
+			w18.Fill = false;
 			// Container child PropsVbox.Gtk.Box+BoxChild
 			this.FetchButton = new global::Gtk.Button();
 			this.FetchButton.CanFocus = true;
@@ -285,32 +315,32 @@ namespace CashFlow
 			this.FetchButton.UseUnderline = true;
 			this.FetchButton.Label = global::Mono.Unix.Catalog.GetString("Verileri Getir");
 			this.PropsVbox.Add(this.FetchButton);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.FetchButton]));
-			w17.Position = 2;
-			w17.Expand = false;
-			w17.Fill = false;
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.FetchButton]));
+			w19.Position = 2;
+			w19.Expand = false;
+			w19.Fill = false;
 			this.MainVbox.Add(this.PropsVbox);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.PropsVbox]));
-			w18.Position = 1;
-			w18.Expand = false;
-			w18.Fill = false;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.PropsVbox]));
+			w20.Position = 1;
+			w20.Expand = false;
+			w20.Fill = false;
 			// Container child MainVbox.Gtk.Box+BoxChild
 			this.MainPlotAlignment = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.MainPlotAlignment.Name = "MainPlotAlignment";
 			this.MainVbox.Add(this.MainPlotAlignment);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainPlotAlignment]));
-			w19.Position = 2;
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainPlotAlignment]));
+			w21.Position = 2;
 			// Container child MainVbox.Gtk.Box+BoxChild
 			this.MainStatusBar = new global::Gtk.Statusbar();
 			this.MainStatusBar.Name = "MainStatusBar";
 			this.MainStatusBar.Spacing = 6;
 			this.MainStatusBar.BorderWidth = ((uint)(2));
 			this.MainVbox.Add(this.MainStatusBar);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainStatusBar]));
-			w20.PackType = ((global::Gtk.PackType)(1));
-			w20.Position = 3;
-			w20.Expand = false;
-			w20.Fill = false;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainStatusBar]));
+			w22.PackType = ((global::Gtk.PackType)(1));
+			w22.Position = 3;
+			w22.Expand = false;
+			w22.Fill = false;
 			this.Add(this.MainVbox);
 			if ((this.Child != null))
 			{
@@ -322,8 +352,8 @@ namespace CashFlow
 			this.PNGExportAction.Activated += new global::System.EventHandler(this.OnPNGExportActionActivated);
 			this.SVGExportAction.Activated += new global::System.EventHandler(this.OnSVGExportActionActivated);
 			this.CloseAction.Activated += new global::System.EventHandler(this.OnCloseActionActivated);
-			this.DateStartEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateStartEntryFocusGrabbed);
-			this.DateEndEntry.FocusGrabbed += new global::System.EventHandler(this.OnDateEndEntryFocusGrabbed);
+			this.DateStartButton.Clicked += new global::System.EventHandler(this.OnDateStartButtonClicked);
+			this.DateEndButton.Clicked += new global::System.EventHandler(this.OnDateEndButtonClicked);
 			this.CurrencyBaseSelection.Changed += new global::System.EventHandler(this.OnCurrencyBaseSelectionChanged);
 			this.CurrencyListButton.Clicked += new global::System.EventHandler(this.OnCurrencyListButtonClicked);
 			this.FetchButton.Clicked += new global::System.EventHandler(this.OnFetchButtonClicked);

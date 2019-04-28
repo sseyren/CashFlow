@@ -34,7 +34,9 @@ namespace CashFlow
             Build();
 
             DateStartEntry.Text = Fetcher.StartAt.ToString(DateStringFormat);
+            DateStartEntry.Xalign = 0.5F;
             DateEndEntry.Text = Fetcher.EndAt.ToString(DateStringFormat);
+            DateEndEntry.Xalign = 0.5F;
 
             foreach (Currencies currency in Enum.GetValues(typeof(Currencies)))
                 CurrencyBaseSelection.AppendText(currency.ToString() + " - " + currency.GetStringValue());
@@ -73,7 +75,7 @@ namespace CashFlow
             a.RetVal = true;
         }
 
-        protected void OnDateStartEntryFocusGrabbed(object sender, EventArgs e)
+        protected void OnDateStartButtonClicked(object sender, EventArgs e)
         {
             DateTimeDialog dialog;
             if (Fetcher.StartAt == new DateTime())
@@ -100,7 +102,7 @@ namespace CashFlow
             dialog.Destroy();
         }
 
-        protected void OnDateEndEntryFocusGrabbed(object sender, EventArgs e)
+        protected void OnDateEndButtonClicked(object sender, EventArgs e)
         {
             DateTimeDialog dialog;
             if (Fetcher.EndAt == new DateTime())
