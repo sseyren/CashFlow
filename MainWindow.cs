@@ -21,7 +21,6 @@ namespace CashFlow
         private PlotController MainPlotController = new PlotController();
 
         private CurrencyFetcher Fetcher = new CurrencyFetcher();
-        private Dictionary<Currencies, List<Node>> MainData;
 
         private void ChangeStatus(string message)
         {
@@ -153,11 +152,11 @@ namespace CashFlow
                 Application.Invoke((sender, e) => ChangeStatus("Veriler getiriliyor..."));
                 try
                 {
-                    MainData = Fetcher.Fetch();
+                    Fetcher.Fetch();
                     Application.Invoke(delegate
                     {
                         MainPlotModel.Series.Clear();
-                        foreach (KeyValuePair<Currencies, List<Node>> pair in MainData)
+                        foreach (KeyValuePair<Currencies, List<Node>> pair in Fetcher.Data)
                         {
                             MainPlotModel.Series.Add(new LineSeries
                             {
@@ -329,7 +328,7 @@ namespace CashFlow
 
         protected void OnCSVExportActionActivated(object sender, EventArgs e)
         {
-            if (MainData == null || MainData.Count == 0)
+            if (Fetcher.Data == null || Fetcher.Data.Count == 0)
             {
                 MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
                     MessageType.Error, ButtonsType.Ok, "Dışarı aktarılacak veri yok.");
@@ -356,18 +355,18 @@ namespace CashFlow
                     const string sep = ",";
                     sw.NewLine = "\r\n";
 
-                    List<Currencies> keys = new List<Currencies>(MainData.Keys);
+                    List<Currencies> keys = new List<Currencies>(Fetcher.Data.Keys);
 
                     string header = "Date" + sep;
                     foreach (Currencies cur in keys)
                         header += cur.ToString() + sep;
                     sw.WriteLine(header.Substring(0, header.Length - 1));
 
-                    for (int i = 0; i < MainData[keys[0]].Count; i++)
+                    for (int i = 0; i < Fetcher.Data[keys[0]].Count; i++)
                     {
-                        string line = MainData[keys[0]][i].Time.ToString(DateStringFormat) + sep;
+                        string line = Fetcher.Data[keys[0]][i].Time.ToString(DateStringFormat) + sep;
                         foreach (Currencies cur in keys)
-                            line += MainData[cur][i].Value.ToString("0.0000000000", System.Globalization.CultureInfo.InvariantCulture) + sep;
+                            line += Fetcher.Data[cur][i].Value.ToString("0.0000000000", System.Globalization.CultureInfo.InvariantCulture) + sep;
                         sw.WriteLine(line.Substring(0, line.Length - 1));
                     }
                 }
