@@ -25,7 +25,7 @@ namespace CashFlow
         public Currencies Base = Currencies.USD;
         public List<Currencies> Symbols = new List<Currencies> { Currencies.TRY, Currencies.JPY, Currencies.GBP, Currencies.EUR };
 
-        public Dictionary<Currencies, List<Node>> currencyDict = new Dictionary<Currencies, List<Node>>();
+        public Dictionary<Currencies, List<Node>> Data = new Dictionary<Currencies, List<Node>>();
 
         public CurrencyFetcher()
         {
@@ -60,9 +60,9 @@ namespace CashFlow
 
             dynamic jsonObject = JsonConvert.DeserializeObject<dynamic>(jsonString);
 
-            currencyDict.Clear();
+            Data.Clear();
             foreach (Currencies currency in Symbols)
-                currencyDict[currency] = new List<Node>();
+                Data[currency] = new List<Node>();
 
             foreach (var date in jsonObject.rates)
             {
@@ -71,14 +71,14 @@ namespace CashFlow
                 foreach (var value in date.First)
                 {
                     Enum.TryParse(value.Name, out Currencies currency);
-                    currencyDict[currency].Add(new Node { Time = dt, Value = value.First });
+                    Data[currency].Add(new Node { Time = dt, Value = value.First });
                 }
             }
 
-            foreach (Currencies key in currencyDict.Keys)
-                currencyDict[key].Sort((x, y) => DateTime.Compare(x.Time, y.Time));
+            foreach (Currencies key in Data.Keys)
+                Data[key].Sort((x, y) => DateTime.Compare(x.Time, y.Time));
 
-            return currencyDict;
+            return Data;
         }
     }
 }
