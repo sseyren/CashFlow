@@ -22,6 +22,8 @@ namespace CashFlow
 
         private CurrencyFetcher Fetcher = new CurrencyFetcher();
 
+        private Currencies FetchedCurrency;
+
         private void ChangeStatus(string message)
         {
             const uint MsgID = 0;
@@ -153,14 +155,16 @@ namespace CashFlow
                 try
                 {
                     Fetcher.Fetch();
+                    FetchedCurrency = Fetcher.Base;
                     Application.Invoke(delegate
                     {
                         MainPlotModel.Series.Clear();
+                        string suffix = " (" + FetchedCurrency.ToString() + ")";
                         foreach (KeyValuePair<Currencies, List<Node>> pair in Fetcher.Data)
                         {
                             MainPlotModel.Series.Add(new LineSeries
                             {
-                                Title = pair.Key.ToString() + " - " + pair.Key.GetStringValue(),
+                                Title = pair.Key.ToString() + " - " + pair.Key.GetStringValue() + suffix,
                                 ItemsSource = pair.Value,
                                 DataFieldX = "Time",
                                 DataFieldY = "Value",
@@ -358,8 +362,10 @@ namespace CashFlow
                     List<Currencies> keys = new List<Currencies>(Fetcher.Data.Keys);
 
                     string header = "Date" + sep;
+                    string suffix = "/" + FetchedCurrency.ToString();
+
                     foreach (Currencies cur in keys)
-                        header += cur.ToString() + sep;
+                        header += cur.ToString() + suffix + sep;
                     sw.WriteLine(header.Substring(0, header.Length - 1));
 
                     for (int i = 0; i < Fetcher.Data[keys[0]].Count; i++)
