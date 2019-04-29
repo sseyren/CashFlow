@@ -21,6 +21,7 @@ namespace CashFlow
         private PlotController MainPlotController = new PlotController();
 
         private CurrencyFetcher Fetcher = new CurrencyFetcher();
+        private Dictionary<Currencies, List<Node>> MainData;
 
         private void ChangeStatus(string message)
         {
@@ -152,11 +153,11 @@ namespace CashFlow
                 Application.Invoke((sender, e) => ChangeStatus("Veriler getiriliyor..."));
                 try
                 {
-                    Dictionary<Currencies, List<Node>> dict = Fetcher.Fetch();
+                    MainData = Fetcher.Fetch();
                     Application.Invoke(delegate
                     {
                         MainPlotModel.Series.Clear();
-                        foreach (KeyValuePair<Currencies, List<Node>> pair in dict)
+                        foreach (KeyValuePair<Currencies, List<Node>> pair in MainData)
                         {
                             MainPlotModel.Series.Add(new LineSeries
                             {
@@ -230,7 +231,8 @@ namespace CashFlow
             ExportProperties props = null;
 
             ExportDialog export = new ExportDialog(exportType);
-            export.Response += delegate (object obj, ResponseArgs resp) {
+            export.Response += delegate (object obj, ResponseArgs resp)
+            {
                 if (resp.ResponseId == ResponseType.Ok)
                     props = export.Properties;
             };
@@ -324,5 +326,61 @@ namespace CashFlow
         protected void OnPNGExportActionActivated(object sender, EventArgs e) => Export(ExportType.PNG);
 
         protected void OnSVGExportActionActivated(object sender, EventArgs e) => Export(ExportType.SVG);
+
+        protected void OnCSVExportActionActivated(object sender, EventArgs e)
+        {
+            if (MainData == null || MainData.Count == 0)
+            {
+                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                    MessageType.Error, ButtonsType.Ok, "Dışarı aktarılacak veri yok.");
+                dialog.Run();
+                dialog.Destroy();
+                return;
+            }
+
+            string FileName = null;
+
+            FileChooserDialog fc = new FileChooserDialog("Kaydedilecek Yeri Seçin", this,
+                FileChooserAction.Save, "Vazgeç", ResponseType.Cancel, "Kaydet", ResponseType.Accept);
+            if (fc.Run() == (int)ResponseType.Accept)
+                FileName = fc.Filename;
+            fc.Destroy();
+
+            if (FileName == null)
+                return;
+
+            try
+            {
+                using (StreamWriter sw = File.CreateText(FileName))
+                {
+                    const string sep = ",";
+                    sw.NewLine = "\r\n";
+
+                    List<Currencies> keys = new List<Currencies>(MainData.Keys);
+
+                    string header = "Date" + sep;
+                    foreach (Currencies cur in keys)
+                        header += cur.ToString() + sep;
+                    sw.WriteLine(header.Substring(0, header.Length - 1));
+
+                    for (int i = 0; i < MainData[keys[0]].Count; i++)
+                    {
+                        string line = MainData[keys[0]][i].Time.ToString(DateStringFormat) + sep;
+                        foreach (Currencies cur in keys)
+                            line += MainData[cur][i].Value.ToString("0.0000000000", System.Globalization.CultureInfo.InvariantCulture) + sep;
+                        sw.WriteLine(line.Substring(0, line.Length - 1));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
+                    MessageType.Error, ButtonsType.Ok,
+                    "Dışarı aktarılırken bir sorunla karşılaşıldı.\n\n" +
+                    "Mesaj: " + ex.Message);
+                dialog.Run();
+                dialog.Destroy();
+            }
+        }
     }
 }

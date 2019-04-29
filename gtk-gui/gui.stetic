@@ -82,6 +82,7 @@
         <property name="Label" translatable="yes">CSV Olarak Dışarı Aktar...</property>
         <property name="ShortLabel" translatable="yes">CSV Olarak Dışarı Aktar...</property>
         <property name="StockId">gtk-save-as</property>
+        <signal name="Activated" handler="OnCSVExportActionActivated" />
       </action>
       <action id="CopyToClipboardAction">
         <property name="Type">Action</property>

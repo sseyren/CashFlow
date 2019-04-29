@@ -352,6 +352,7 @@ namespace CashFlow
 			this.PNGExportAction.Activated += new global::System.EventHandler(this.OnPNGExportActionActivated);
 			this.SVGExportAction.Activated += new global::System.EventHandler(this.OnSVGExportActionActivated);
 			this.CloseAction.Activated += new global::System.EventHandler(this.OnCloseActionActivated);
+			this.CSVExportAction.Activated += new global::System.EventHandler(this.OnCSVExportActionActivated);
 			this.DateStartButton.Clicked += new global::System.EventHandler(this.OnDateStartButtonClicked);
 			this.DateEndButton.Clicked += new global::System.EventHandler(this.OnDateEndButtonClicked);
 			this.CurrencyBaseSelection.Changed += new global::System.EventHandler(this.OnCurrencyBaseSelectionChanged);
