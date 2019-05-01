@@ -84,6 +84,8 @@
     <Compile Include="Constants.cs" />
     <Compile Include="ExportDialog.cs" />
     <Compile Include="gtk-gui\CashFlow.ExportDialog.cs" />
+    <Compile Include="ControlsDialog.cs" />
+    <Compile Include="gtk-gui\CashFlow.ControlsDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

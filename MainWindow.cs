@@ -402,5 +402,28 @@ namespace CashFlow
             MainPlotModel.ResetAllAxes();
             MainPlotModel.InvalidatePlot(true);
         }
+
+
+
+        protected void OnControlsActionActivated(object sender, EventArgs e)
+        {
+            ControlsDialog dialog = new ControlsDialog();
+            dialog.Run();
+            dialog.Destroy();
+        }
+
+        protected void OnAboutActionActivated(object sender, EventArgs e)
+        {
+            AboutDialog dialog = new AboutDialog
+            {
+                ProgramName = "CashFlow",
+                Version = "1.0",
+                Comments = "Döviz verilerini grafiğe döken bir program.",
+                Authors = new string[] { "Serhat Seyren <sseyren@hotmail.com>" },
+                Website = "https://github.com/thesseyren/CashFlow",
+            };
+            dialog.Run();
+            dialog.Destroy();
+        }
     }
 }

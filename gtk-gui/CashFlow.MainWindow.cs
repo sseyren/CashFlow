@@ -24,7 +24,7 @@ namespace CashFlow
 
 		private global::Gtk.Action FocusOnDataAction;
 
-		private global::Gtk.Action ShortcutsAction;
+		private global::Gtk.Action ControlsAction;
 
 		private global::Gtk.Action AboutAction;
 
@@ -113,9 +113,9 @@ namespace CashFlow
 			this.FocusOnDataAction = new global::Gtk.Action("FocusOnDataAction", global::Mono.Unix.Catalog.GetString("Verilere Odaklan"), null, "gtk-zoom-fit");
 			this.FocusOnDataAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Verilere Odaklan");
 			w1.Add(this.FocusOnDataAction, null);
-			this.ShortcutsAction = new global::Gtk.Action("ShortcutsAction", global::Mono.Unix.Catalog.GetString("Kısayollar"), null, "gtk-info");
-			this.ShortcutsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Kısayollar");
-			w1.Add(this.ShortcutsAction, null);
+			this.ControlsAction = new global::Gtk.Action("ControlsAction", global::Mono.Unix.Catalog.GetString("Kontroller"), null, "gtk-info");
+			this.ControlsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Kısayollar");
+			w1.Add(this.ControlsAction, null);
 			this.AboutAction = new global::Gtk.Action("AboutAction", global::Mono.Unix.Catalog.GetString("Hakkında"), null, "gtk-about");
 			this.AboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Hakkında");
 			w1.Add(this.AboutAction, null);
@@ -137,7 +137,7 @@ namespace CashFlow
 			this.MainVbox.Name = "MainVbox";
 			this.MainVbox.Spacing = 6;
 			// Container child MainVbox.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString(@"<ui><menubar name='MainMenuBar'><menu name='DosyaAction' action='DosyaAction'><menuitem name='PDFExportAction' action='PDFExportAction'/><menuitem name='PNGExportAction' action='PNGExportAction'/><menuitem name='SVGExportAction' action='SVGExportAction'/><menuitem name='CSVExportAction' action='CSVExportAction'/><separator/><menuitem name='CloseAction' action='CloseAction'/></menu><menu name='PlanAction' action='PlanAction'><menuitem name='ClearPlotAction' action='ClearPlotAction'/><menuitem name='FocusOnDataAction' action='FocusOnDataAction'/><separator/><menuitem name='CopyToClipboardAction' action='CopyToClipboardAction'/></menu><menu name='YardmAction' action='YardmAction'><menuitem name='ShortcutsAction' action='ShortcutsAction'/><separator/><menuitem name='AboutAction' action='AboutAction'/></menu><menu/></menubar></ui>");
+			this.UIManager.AddUiFromString(@"<ui><menubar name='MainMenuBar'><menu name='DosyaAction' action='DosyaAction'><menuitem name='PDFExportAction' action='PDFExportAction'/><menuitem name='PNGExportAction' action='PNGExportAction'/><menuitem name='SVGExportAction' action='SVGExportAction'/><menuitem name='CSVExportAction' action='CSVExportAction'/><separator/><menuitem name='CloseAction' action='CloseAction'/></menu><menu name='PlanAction' action='PlanAction'><menuitem name='ClearPlotAction' action='ClearPlotAction'/><menuitem name='FocusOnDataAction' action='FocusOnDataAction'/><separator/><menuitem name='CopyToClipboardAction' action='CopyToClipboardAction'/></menu><menu name='YardmAction' action='YardmAction'><menuitem name='ControlsAction' action='ControlsAction'/><separator/><menuitem name='AboutAction' action='AboutAction'/></menu><menu/></menubar></ui>");
 			this.MainMenuBar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/MainMenuBar")));
 			this.MainMenuBar.Name = "MainMenuBar";
 			this.MainVbox.Add(this.MainMenuBar);
@@ -354,6 +354,8 @@ namespace CashFlow
 			this.CloseAction.Activated += new global::System.EventHandler(this.OnCloseActionActivated);
 			this.ClearPlotAction.Activated += new global::System.EventHandler(this.OnClearPlotActionActivated);
 			this.FocusOnDataAction.Activated += new global::System.EventHandler(this.OnFocusOnDataActionActivated);
+			this.ControlsAction.Activated += new global::System.EventHandler(this.OnControlsActionActivated);
+			this.AboutAction.Activated += new global::System.EventHandler(this.OnAboutActionActivated);
 			this.CSVExportAction.Activated += new global::System.EventHandler(this.OnCSVExportActionActivated);
 			this.DateStartButton.Clicked += new global::System.EventHandler(this.OnDateStartButtonClicked);
 			this.DateEndButton.Clicked += new global::System.EventHandler(this.OnDateEndButtonClicked);
