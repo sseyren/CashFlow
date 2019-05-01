@@ -387,5 +387,20 @@ namespace CashFlow
                 dialog.Destroy();
             }
         }
+
+
+
+        protected void OnClearPlotActionActivated(object sender, EventArgs e)
+        {
+            Fetcher.Data.Clear();
+            MainPlotModel.Series.Clear();
+            MainPlotModel.InvalidatePlot(true);
+        }
+
+        protected void OnFocusOnDataActionActivated(object sender, EventArgs e)
+        {
+            MainPlotModel.ResetAllAxes();
+            MainPlotModel.InvalidatePlot(true);
+        }
     }
 }

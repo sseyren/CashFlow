@@ -58,12 +58,14 @@
         <property name="Label" translatable="yes">Planı Temizle</property>
         <property name="ShortLabel" translatable="yes">Planı Temizle</property>
         <property name="StockId">gtk-missing-image</property>
+        <signal name="Activated" handler="OnClearPlotActionActivated" />
       </action>
       <action id="FocusOnDataAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Verilere Odaklan</property>
         <property name="ShortLabel" translatable="yes">Verilere Odaklan</property>
         <property name="StockId">gtk-zoom-fit</property>
+        <signal name="Activated" handler="OnFocusOnDataActionActivated" />
       </action>
       <action id="ShortcutsAction">
         <property name="Type">Action</property>
