@@ -70,8 +70,19 @@ namespace CashFlow
                 CurrencyBaseSelection.AppendText(currency.ToString() + " - " + currency.GetStringValue());
             CurrencyBaseSelection.Active = (int)Fetcher.Base;
 
+            MainPlotController.UnbindKeyDown(OxyKey.A);
             MainPlotController.BindMouseDown(OxyMouseButton.Left, PlotCommands.PanAt);
             MainPlotController.BindMouseDown(OxyMouseButton.Right, PlotCommands.PointsOnlyTrack);
+            MainPlotController.BindKeyDown(OxyKey.Add, PlotCommands.ZoomInFine);
+            MainPlotController.BindKeyDown(OxyKey.Subtract, PlotCommands.ZoomOutFine);
+            MainPlotController.BindKeyDown(OxyKey.Up, PlotCommands.PanDownFine);
+            MainPlotController.BindKeyDown(OxyKey.W, PlotCommands.PanDown);
+            MainPlotController.BindKeyDown(OxyKey.Down, PlotCommands.PanUpFine);
+            MainPlotController.BindKeyDown(OxyKey.S, PlotCommands.PanUp);
+            MainPlotController.BindKeyDown(OxyKey.Left, PlotCommands.PanRightFine);
+            MainPlotController.BindKeyDown(OxyKey.A, PlotCommands.PanRight);
+            MainPlotController.BindKeyDown(OxyKey.Right, PlotCommands.PanLeftFine);
+            MainPlotController.BindKeyDown(OxyKey.D, PlotCommands.PanLeft);
 
             MainPlotModel = new PlotModel();
             MainPlotModel.Axes.Add(new DateTimeAxis

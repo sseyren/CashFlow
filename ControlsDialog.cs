@@ -33,17 +33,17 @@ namespace CashFlow
         [TreeNode(ListOnly = true)]
         public class Control : TreeNode
         {
-            public Control(string key, string binding)
+            public Control(string binding, string key)
             {
                 Key = key;
                 Binding = binding;
             }
 
             [TreeNodeValue(Column = 0)]
-            public string Key;
+            public string Binding { get; }
 
             [TreeNodeValue(Column = 1)]
-            public string Binding { get; }
+            public string Key;
         }
 
         NodeStore store;
@@ -54,6 +54,13 @@ namespace CashFlow
                 if (store == null)
                 {
                     store = new NodeStore(typeof(Control));
+                    store.AddNode(new Control("Panoyu sürükleme", "Sol tık, WASD tuşları"));
+                    store.AddNode(new Control("Panoyu hassas sürükleme", "↑, ←, ↓, → tuşları"));
+                    store.AddNode(new Control("Yakınlaştırma", "Fare tekerleği"));
+                    store.AddNode(new Control("Hassas yakınlaştırma", "+ ve - tuşları"));
+                    store.AddNode(new Control("Dikdötgen yakınlaştırma", "Ctrl+Sağ tık"));
+                    store.AddNode(new Control("Nokta bilgisi", "Sağ tık"));
+                    store.AddNode(new Control("Eksenleri sıfırla\n(verilere odaklan)", "Home tuşu"));
                 }
                 return store;
             }
@@ -64,8 +71,8 @@ namespace CashFlow
             this.Build();
 
             MainNodeView.NodeStore = Store;
-            MainNodeView.AppendColumn("Tuş", new CellRendererText(), "text", 0);
-            MainNodeView.AppendColumn("Eylem", new CellRendererText(), "text", 1);
+            MainNodeView.AppendColumn("Eylem", new CellRendererText(), "text", 0);
+            MainNodeView.AppendColumn("Tuş", new CellRendererText(), "text", 1);
         }
     }
 }
