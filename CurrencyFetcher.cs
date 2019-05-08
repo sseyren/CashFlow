@@ -55,6 +55,8 @@ namespace CashFlow
 
         public List<Node> TopValues = new List<Node>();
         public List<Node> BottomValues = new List<Node>();
+        public List<Node[]> TopChanges = new List<Node[]>();
+        public List<Node[]> BottomChanges = new List<Node[]>();
 
         public CurrencyFetcher()
         {
@@ -116,14 +118,22 @@ namespace CashFlow
         {
             TopValues.Clear();
             BottomValues.Clear();
+            TopChanges.Clear();
+            BottomChanges.Clear();
 
             foreach (KeyValuePair<Currencies, List<Node>> pair in Data)
             {
+                if (pair.Value.Count < 3)
+                    continue;
+
                 Node top = new Node();
-                Node bottom = new Node
+                Node bottom = new Node { Time = pair.Value[0].Time, Value = pair.Value[0].Value };
+
+                Node[] topChange = new Node[2] { new Node(), new Node() };
+                Node[] bottomChange = new Node[2]
                 {
-                    Time = pair.Value[0].Time,
-                    Value = pair.Value[0].Value
+                    new Node { Time = pair.Value[0].Time, Value = pair.Value[0].Value },
+                    new Node { Time = pair.Value[1].Time, Value = pair.Value[1].Value }
                 };
 
                 foreach (Node node in pair.Value)
@@ -134,8 +144,18 @@ namespace CashFlow
                         bottom = node;
                 }
 
+                for (int i = 1; i < pair.Value.Count; i++)
+                {
+                    if ((pair.Value[i].Value - pair.Value[i - 1].Value) > (topChange[1].Value - topChange[0].Value))
+                        topChange = new Node[2] { pair.Value[i - 1], pair.Value[i] };
+                    else if ((pair.Value[i].Value - pair.Value[i - 1].Value) < (bottomChange[1].Value - bottomChange[0].Value))
+                        bottomChange = new Node[2] { pair.Value[i - 1], pair.Value[i] };
+                }
+
                 TopValues.Add(top);
                 BottomValues.Add(bottom);
+                TopChanges.Add(topChange);
+                BottomChanges.Add(bottomChange);
             }
         }
     }

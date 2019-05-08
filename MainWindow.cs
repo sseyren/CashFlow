@@ -219,9 +219,6 @@ namespace CashFlow
                                 X = DateTimeAxis.ToDouble(node.Time),
                                 Y = node.Value,
                                 Size = 5,
-                                Text = "en yüksek",
-                                FontSize = 10,
-                                TextVerticalAlignment = VerticalAlignment.Bottom,
                                 Fill = OxyColors.Blue
                             });
                         }
@@ -233,10 +230,28 @@ namespace CashFlow
                                 X = DateTimeAxis.ToDouble(node.Time),
                                 Y = node.Value,
                                 Size = 5,
-                                Text = "en düşük",
-                                FontSize = 10,
-                                TextVerticalAlignment = VerticalAlignment.Top,
                                 Fill = OxyColors.Red
+                            });
+                        }
+
+                        foreach (Node[] nodes in Fetcher.TopChanges)
+                        {
+                            MainPlotModel.Annotations.Add(new ArrowAnnotation
+                            {
+                                StartPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[0].Time), nodes[0].Value),
+                                EndPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[1].Time), nodes[1].Value),
+                                LineStyle = LineStyle.Dot
+                            });
+                        }
+
+                        foreach (Node[] nodes in Fetcher.BottomChanges)
+                        {
+                            MainPlotModel.Annotations.Add(new ArrowAnnotation
+                            {
+                                StartPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[0].Time), nodes[0].Value),
+                                EndPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[1].Time), nodes[1].Value),
+                                LineStyle = LineStyle.Dot,
+                                Color = OxyColors.Red
                             });
                         }
 
