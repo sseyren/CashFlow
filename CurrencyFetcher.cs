@@ -53,6 +53,9 @@ namespace CashFlow
 
         public Dictionary<Currencies, List<Node>> Data = new Dictionary<Currencies, List<Node>>();
 
+        public List<Node> TopValues = new List<Node>();
+        public List<Node> BottomValues = new List<Node>();
+
         public CurrencyFetcher()
         {
             EndAt = DateTime.Today;
@@ -104,7 +107,36 @@ namespace CashFlow
             foreach (Currencies key in Data.Keys)
                 Data[key].Sort((x, y) => DateTime.Compare(x.Time, y.Time));
 
+            ComputeAnnotations();
+
             return Data;
+        }
+
+        private void ComputeAnnotations()
+        {
+            TopValues.Clear();
+            BottomValues.Clear();
+
+            foreach (KeyValuePair<Currencies, List<Node>> pair in Data)
+            {
+                Node top = new Node();
+                Node bottom = new Node
+                {
+                    Time = pair.Value[0].Time,
+                    Value = pair.Value[0].Value
+                };
+
+                foreach (Node node in pair.Value)
+                {
+                    if (node.Value > top.Value)
+                        top = node;
+                    else if (node.Value < bottom.Value)
+                        bottom = node;
+                }
+
+                TopValues.Add(top);
+                BottomValues.Add(bottom);
+            }
         }
     }
 }

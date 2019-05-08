@@ -34,6 +34,7 @@ using OxyPlot;
 using OxyPlot.GtkSharp;
 using OxyPlot.Axes;
 using OxyPlot.Series;
+using OxyPlot.Annotations;
 
 namespace CashFlow
 {
@@ -196,6 +197,8 @@ namespace CashFlow
                     Application.Invoke(delegate
                     {
                         MainPlotModel.Series.Clear();
+                        MainPlotModel.Annotations.Clear();
+
                         string suffix = " (" + FetchedCurrency.ToString() + ")";
                         foreach (KeyValuePair<Currencies, List<Node>> pair in Fetcher.Data)
                         {
@@ -208,6 +211,35 @@ namespace CashFlow
                                 MarkerType = MarkerType.Circle
                             });
                         }
+
+                        foreach (Node node in Fetcher.TopValues)
+                        {
+                            MainPlotModel.Annotations.Add(new PointAnnotation
+                            {
+                                X = DateTimeAxis.ToDouble(node.Time),
+                                Y = node.Value,
+                                Size = 5,
+                                Text = "en yüksek",
+                                FontSize = 10,
+                                TextVerticalAlignment = VerticalAlignment.Bottom,
+                                Fill = OxyColors.Blue
+                            });
+                        }
+
+                        foreach (Node node in Fetcher.BottomValues)
+                        {
+                            MainPlotModel.Annotations.Add(new PointAnnotation
+                            {
+                                X = DateTimeAxis.ToDouble(node.Time),
+                                Y = node.Value,
+                                Size = 5,
+                                Text = "en düşük",
+                                FontSize = 10,
+                                TextVerticalAlignment = VerticalAlignment.Top,
+                                Fill = OxyColors.Red
+                            });
+                        }
+
                         MainPlotModel.InvalidatePlot(true);
                         MainPlotModel.ResetAllAxes();
                     });
@@ -431,6 +463,7 @@ namespace CashFlow
         {
             Fetcher.Data.Clear();
             MainPlotModel.Series.Clear();
+            MainPlotModel.Annotations.Clear();
             MainPlotModel.InvalidatePlot(true);
         }
 
