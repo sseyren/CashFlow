@@ -88,12 +88,6 @@
         <property name="StockId">gtk-save-as</property>
         <signal name="Activated" handler="OnCSVExportActionActivated" />
       </action>
-      <action id="CopyToClipboardAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Planın Resmini Panoya Kopyala</property>
-        <property name="ShortLabel" translatable="yes">Planın Resmini Panoya Kopyala</property>
-        <property name="StockId">gtk-copy</property>
-      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">CashFlow</property>
@@ -120,8 +114,6 @@
               <node type="Menu" action="PlanAction">
                 <node type="Menuitem" action="ClearPlotAction" />
                 <node type="Menuitem" action="FocusOnDataAction" />
-                <node type="Separator" />
-                <node type="Menuitem" action="CopyToClipboardAction" />
               </node>
               <node type="Menu" action="YardmAction">
                 <node type="Menuitem" action="ControlsAction" />

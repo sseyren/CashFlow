@@ -30,8 +30,6 @@ namespace CashFlow
 
 		private global::Gtk.Action CSVExportAction;
 
-		private global::Gtk.Action CopyToClipboardAction;
-
 		private global::Gtk.VBox MainVbox;
 
 		private global::Gtk.MenuBar MainMenuBar;
@@ -122,9 +120,6 @@ namespace CashFlow
 			this.CSVExportAction = new global::Gtk.Action("CSVExportAction", global::Mono.Unix.Catalog.GetString("CSV Olarak Dışarı Aktar..."), null, "gtk-save-as");
 			this.CSVExportAction.ShortLabel = global::Mono.Unix.Catalog.GetString("CSV Olarak Dışarı Aktar...");
 			w1.Add(this.CSVExportAction, null);
-			this.CopyToClipboardAction = new global::Gtk.Action("CopyToClipboardAction", global::Mono.Unix.Catalog.GetString("Planın Resmini Panoya Kopyala"), null, "gtk-copy");
-			this.CopyToClipboardAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Planın Resmini Panoya Kopyala");
-			w1.Add(this.CopyToClipboardAction, null);
 			this.UIManager.InsertActionGroup(w1, 0);
 			this.AddAccelGroup(this.UIManager.AccelGroup);
 			this.Name = "CashFlow.MainWindow";
@@ -137,7 +132,7 @@ namespace CashFlow
 			this.MainVbox.Name = "MainVbox";
 			this.MainVbox.Spacing = 6;
 			// Container child MainVbox.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString(@"<ui><menubar name='MainMenuBar'><menu name='DosyaAction' action='DosyaAction'><menuitem name='PDFExportAction' action='PDFExportAction'/><menuitem name='PNGExportAction' action='PNGExportAction'/><menuitem name='SVGExportAction' action='SVGExportAction'/><menuitem name='CSVExportAction' action='CSVExportAction'/><separator/><menuitem name='CloseAction' action='CloseAction'/></menu><menu name='PlanAction' action='PlanAction'><menuitem name='ClearPlotAction' action='ClearPlotAction'/><menuitem name='FocusOnDataAction' action='FocusOnDataAction'/><separator/><menuitem name='CopyToClipboardAction' action='CopyToClipboardAction'/></menu><menu name='YardmAction' action='YardmAction'><menuitem name='ControlsAction' action='ControlsAction'/><separator/><menuitem name='AboutAction' action='AboutAction'/></menu><menu/></menubar></ui>");
+			this.UIManager.AddUiFromString(@"<ui><menubar name='MainMenuBar'><menu name='DosyaAction' action='DosyaAction'><menuitem name='PDFExportAction' action='PDFExportAction'/><menuitem name='PNGExportAction' action='PNGExportAction'/><menuitem name='SVGExportAction' action='SVGExportAction'/><menuitem name='CSVExportAction' action='CSVExportAction'/><separator/><menuitem name='CloseAction' action='CloseAction'/></menu><menu name='PlanAction' action='PlanAction'><menuitem name='ClearPlotAction' action='ClearPlotAction'/><menuitem name='FocusOnDataAction' action='FocusOnDataAction'/></menu><menu name='YardmAction' action='YardmAction'><menuitem name='ControlsAction' action='ControlsAction'/><separator/><menuitem name='AboutAction' action='AboutAction'/></menu><menu/></menubar></ui>");
 			this.MainMenuBar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/MainMenuBar")));
 			this.MainMenuBar.Name = "MainMenuBar";
 			this.MainVbox.Add(this.MainMenuBar);
