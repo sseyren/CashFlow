@@ -49,7 +49,14 @@ namespace CashFlow
         public DateTime StartAt, EndAt;
 
         public Currencies Base = Currencies.USD;
-        public List<Currencies> Symbols = new List<Currencies> { Currencies.TRY, Currencies.JPY, Currencies.GBP, Currencies.EUR };
+        public List<Currencies> Symbols = new List<Currencies>
+        {
+            Currencies.CAD,
+            Currencies.EUR,
+            Currencies.ILS,
+            Currencies.RON,
+            Currencies.TRY
+        };
 
         public Dictionary<Currencies, List<Node>> Data = new Dictionary<Currencies, List<Node>>();
 

@@ -156,7 +156,6 @@
             <child>
               <widget class="Gtk.Frame" id="DateFrame">
                 <property name="MemberName" />
-                <property name="ShadowType">In</property>
                 <child>
                   <widget class="Gtk.Alignment" id="GtkAlignment">
                     <property name="MemberName" />
@@ -326,7 +325,6 @@
             <child>
               <widget class="Gtk.Frame" id="CurrencyFrame">
                 <property name="MemberName" />
-                <property name="ShadowType">Out</property>
                 <child>
                   <widget class="Gtk.Alignment" id="GtkAlignment1">
                     <property name="MemberName" />
@@ -414,25 +412,8 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="FetchButton">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Verileri Getir</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnFetchButtonClicked" />
-              </widget>
-              <packing>
-                <property name="Position">2</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
               <widget class="Gtk.Frame" id="PlotOptionsFrame">
                 <property name="MemberName" />
-                <property name="ShadowType">In</property>
                 <child>
                   <widget class="Gtk.Alignment" id="GtkAlignment3">
                     <property name="MemberName" />
@@ -498,7 +479,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">2</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -507,7 +488,6 @@
             <child>
               <widget class="Gtk.Frame" id="PlotActionsFrame">
                 <property name="MemberName" />
-                <property name="ShadowType">In</property>
                 <child>
                   <widget class="Gtk.Alignment" id="GtkAlignment2">
                     <property name="MemberName" />
@@ -568,6 +548,22 @@
                     <property name="type">label_item</property>
                   </packing>
                 </child>
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="FetchButton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Verileri Getir</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnFetchButtonClicked" />
               </widget>
               <packing>
                 <property name="Position">4</property>
