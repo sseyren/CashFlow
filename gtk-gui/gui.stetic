@@ -88,6 +88,22 @@
         <property name="StockId">gtk-save-as</property>
         <signal name="Activated" handler="OnCSVExportActionActivated" />
       </action>
+      <action id="BiggestValuesAction">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">En Yüksek/Alçak Değerleri Göster</property>
+        <property name="ShortLabel" translatable="yes">En Yüksek/Alçak Değerleri Göster</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">True</property>
+        <signal name="Toggled" handler="OnBiggestValuesActionToggled" />
+      </action>
+      <action id="BiggestHopsAction">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">En Büyük İniş/Çıkışları Göster</property>
+        <property name="ShortLabel" translatable="yes">En Büyük İniş/Çıkışları Göster</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">True</property>
+        <signal name="Toggled" handler="OnBiggestHopsActionToggled" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">CashFlow</property>
@@ -114,6 +130,9 @@
               <node type="Menu" action="PlanAction">
                 <node type="Menuitem" action="ClearPlotAction" />
                 <node type="Menuitem" action="FocusOnDataAction" />
+                <node type="Separator" />
+                <node type="Menuitem" action="BiggestValuesAction" />
+                <node type="Menuitem" action="BiggestHopsAction" />
               </node>
               <node type="Menu" action="YardmAction">
                 <node type="Menuitem" action="ControlsAction" />
@@ -411,7 +430,79 @@
               </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.Frame" id="PlotOptionsFrame">
+                <property name="MemberName" />
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.Alignment" id="GtkAlignment3">
+                    <property name="MemberName" />
+                    <property name="Xalign">0</property>
+                    <property name="Yalign">0</property>
+                    <property name="LeftPadding">12</property>
+                    <property name="TopPadding">12</property>
+                    <property name="RightPadding">6</property>
+                    <property name="BottomPadding">6</property>
+                    <child>
+                      <widget class="Gtk.VBox" id="vbox1">
+                        <property name="MemberName" />
+                        <property name="Spacing">11</property>
+                        <child>
+                          <widget class="Gtk.CheckButton" id="BiggestValuesCheck">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="Label" translatable="yes">En Yüksek/Alçak Değerleri Göster</property>
+                            <property name="Active">True</property>
+                            <property name="DrawIndicator">True</property>
+                            <property name="HasLabel">True</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Toggled" handler="OnBiggestValuesActionToggled" />
+                          </widget>
+                          <packing>
+                            <property name="Position">0</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.CheckButton" id="BiggestHopsCheck">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="Label" translatable="yes">En Büyük İniş/Çıkışları Göster</property>
+                            <property name="Active">True</property>
+                            <property name="DrawIndicator">True</property>
+                            <property name="HasLabel">True</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Toggled" handler="OnBiggestHopsActionToggled" />
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="PlotOptionsFrameLabel">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">&lt;b&gt;Plan Seçenekleri&lt;/b&gt;</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="type">label_item</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
             <child>
               <widget class="Gtk.Frame" id="PlotActionsFrame">

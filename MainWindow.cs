@@ -197,8 +197,6 @@ namespace CashFlow
                     Application.Invoke(delegate
                     {
                         MainPlotModel.Series.Clear();
-                        MainPlotModel.Annotations.Clear();
-
                         string suffix = " (" + FetchedCurrency.ToString() + ")";
                         foreach (KeyValuePair<Currencies, List<Node>> pair in Fetcher.Data)
                         {
@@ -211,50 +209,7 @@ namespace CashFlow
                                 MarkerType = MarkerType.Circle
                             });
                         }
-
-                        foreach (Node node in Fetcher.TopValues)
-                        {
-                            MainPlotModel.Annotations.Add(new PointAnnotation
-                            {
-                                X = DateTimeAxis.ToDouble(node.Time),
-                                Y = node.Value,
-                                Size = 5,
-                                Fill = OxyColors.Blue
-                            });
-                        }
-
-                        foreach (Node node in Fetcher.BottomValues)
-                        {
-                            MainPlotModel.Annotations.Add(new PointAnnotation
-                            {
-                                X = DateTimeAxis.ToDouble(node.Time),
-                                Y = node.Value,
-                                Size = 5,
-                                Fill = OxyColors.Red
-                            });
-                        }
-
-                        foreach (Node[] nodes in Fetcher.TopChanges)
-                        {
-                            MainPlotModel.Annotations.Add(new ArrowAnnotation
-                            {
-                                StartPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[0].Time), nodes[0].Value),
-                                EndPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[1].Time), nodes[1].Value),
-                                LineStyle = LineStyle.Dot
-                            });
-                        }
-
-                        foreach (Node[] nodes in Fetcher.BottomChanges)
-                        {
-                            MainPlotModel.Annotations.Add(new ArrowAnnotation
-                            {
-                                StartPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[0].Time), nodes[0].Value),
-                                EndPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[1].Time), nodes[1].Value),
-                                LineStyle = LineStyle.Dot,
-                                Color = OxyColors.Red
-                            });
-                        }
-
+                        RenderAnnotations();
                         MainPlotModel.InvalidatePlot(true);
                         MainPlotModel.ResetAllAxes();
                     });
@@ -486,6 +441,89 @@ namespace CashFlow
         {
             MainPlotModel.ResetAllAxes();
             MainPlotModel.InvalidatePlot(true);
+        }
+
+        private bool SyncActionAndCheckButton(object sender, ToggleAction action, CheckButton button)
+        {
+            bool status = false;
+
+            try { CheckButton check = (CheckButton)sender; status = check.Active; }
+            catch (InvalidCastException) { }
+
+            try { ToggleAction check = (ToggleAction)sender; status = check.Active; }
+            catch (InvalidCastException) { }
+
+            button.Active = status;
+            action.Active = status;
+
+            return status;
+        }
+
+        private void RenderAnnotations()
+        {
+            MainPlotModel.Annotations.Clear();
+
+            if (BiggestValuesAction.Active)
+            {
+                foreach (Node node in Fetcher.TopValues)
+                {
+                    MainPlotModel.Annotations.Add(new PointAnnotation
+                    {
+                        X = DateTimeAxis.ToDouble(node.Time),
+                        Y = node.Value,
+                        Size = 5,
+                        Fill = OxyColors.Blue
+                    });
+                }
+                foreach (Node node in Fetcher.BottomValues)
+                {
+                    MainPlotModel.Annotations.Add(new PointAnnotation
+                    {
+                        X = DateTimeAxis.ToDouble(node.Time),
+                        Y = node.Value,
+                        Size = 5,
+                        Fill = OxyColors.Red
+                    });
+                }
+            }
+
+            if (BiggestHopsAction.Active)
+            {
+                foreach (Node[] nodes in Fetcher.TopChanges)
+                {
+                    MainPlotModel.Annotations.Add(new ArrowAnnotation
+                    {
+                        StartPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[0].Time), nodes[0].Value),
+                        EndPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[1].Time), nodes[1].Value),
+                        LineStyle = LineStyle.Dot
+                    });
+                }
+
+                foreach (Node[] nodes in Fetcher.BottomChanges)
+                {
+                    MainPlotModel.Annotations.Add(new ArrowAnnotation
+                    {
+                        StartPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[0].Time), nodes[0].Value),
+                        EndPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[1].Time), nodes[1].Value),
+                        LineStyle = LineStyle.Dot,
+                        Color = OxyColors.Red
+                    });
+                }
+            }
+
+            MainPlotModel.InvalidatePlot(true);
+        }
+
+        protected void OnBiggestValuesActionToggled(object sender, EventArgs e)
+        {
+            SyncActionAndCheckButton(sender, BiggestValuesAction, BiggestValuesCheck);
+            RenderAnnotations();
+        }
+
+        protected void OnBiggestHopsActionToggled(object sender, EventArgs e)
+        {
+            SyncActionAndCheckButton(sender, BiggestHopsAction, BiggestHopsCheck);
+            RenderAnnotations();
         }
 
 

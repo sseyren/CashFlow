@@ -30,6 +30,10 @@ namespace CashFlow
 
 		private global::Gtk.Action CSVExportAction;
 
+		private global::Gtk.ToggleAction BiggestValuesAction;
+
+		private global::Gtk.ToggleAction BiggestHopsAction;
+
 		private global::Gtk.VBox MainVbox;
 
 		private global::Gtk.MenuBar MainMenuBar;
@@ -73,6 +77,18 @@ namespace CashFlow
 		private global::Gtk.Label CurrencyFrameLabel;
 
 		private global::Gtk.Button FetchButton;
+
+		private global::Gtk.Frame PlotOptionsFrame;
+
+		private global::Gtk.Alignment GtkAlignment3;
+
+		private global::Gtk.VBox vbox1;
+
+		private global::Gtk.CheckButton BiggestValuesCheck;
+
+		private global::Gtk.CheckButton BiggestHopsCheck;
+
+		private global::Gtk.Label PlotOptionsFrameLabel;
 
 		private global::Gtk.Frame PlotActionsFrame;
 
@@ -132,6 +148,14 @@ namespace CashFlow
 			this.CSVExportAction = new global::Gtk.Action("CSVExportAction", global::Mono.Unix.Catalog.GetString("CSV Olarak Dışarı Aktar..."), null, "gtk-save-as");
 			this.CSVExportAction.ShortLabel = global::Mono.Unix.Catalog.GetString("CSV Olarak Dışarı Aktar...");
 			w1.Add(this.CSVExportAction, null);
+			this.BiggestValuesAction = new global::Gtk.ToggleAction("BiggestValuesAction", global::Mono.Unix.Catalog.GetString("En Yüksek/Alçak Değerleri Göster"), null, null);
+			this.BiggestValuesAction.Active = true;
+			this.BiggestValuesAction.ShortLabel = global::Mono.Unix.Catalog.GetString("En Yüksek/Alçak Değerleri Göster");
+			w1.Add(this.BiggestValuesAction, null);
+			this.BiggestHopsAction = new global::Gtk.ToggleAction("BiggestHopsAction", global::Mono.Unix.Catalog.GetString("En Büyük İniş/Çıkışları Göster"), null, null);
+			this.BiggestHopsAction.Active = true;
+			this.BiggestHopsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("En Büyük İniş/Çıkışları Göster");
+			w1.Add(this.BiggestHopsAction, null);
 			this.UIManager.InsertActionGroup(w1, 0);
 			this.AddAccelGroup(this.UIManager.AccelGroup);
 			this.Name = "CashFlow.MainWindow";
@@ -144,7 +168,7 @@ namespace CashFlow
 			this.MainVbox.Name = "MainVbox";
 			this.MainVbox.Spacing = 6;
 			// Container child MainVbox.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString(@"<ui><menubar name='MainMenuBar'><menu name='DosyaAction' action='DosyaAction'><menuitem name='PDFExportAction' action='PDFExportAction'/><menuitem name='PNGExportAction' action='PNGExportAction'/><menuitem name='SVGExportAction' action='SVGExportAction'/><menuitem name='CSVExportAction' action='CSVExportAction'/><separator/><menuitem name='CloseAction' action='CloseAction'/></menu><menu name='PlanAction' action='PlanAction'><menuitem name='ClearPlotAction' action='ClearPlotAction'/><menuitem name='FocusOnDataAction' action='FocusOnDataAction'/></menu><menu name='YardmAction' action='YardmAction'><menuitem name='ControlsAction' action='ControlsAction'/><separator/><menuitem name='AboutAction' action='AboutAction'/></menu><menu/></menubar></ui>");
+			this.UIManager.AddUiFromString(@"<ui><menubar name='MainMenuBar'><menu name='DosyaAction' action='DosyaAction'><menuitem name='PDFExportAction' action='PDFExportAction'/><menuitem name='PNGExportAction' action='PNGExportAction'/><menuitem name='SVGExportAction' action='SVGExportAction'/><menuitem name='CSVExportAction' action='CSVExportAction'/><separator/><menuitem name='CloseAction' action='CloseAction'/></menu><menu name='PlanAction' action='PlanAction'><menuitem name='ClearPlotAction' action='ClearPlotAction'/><menuitem name='FocusOnDataAction' action='FocusOnDataAction'/><separator/><menuitem name='BiggestValuesAction' action='BiggestValuesAction'/><menuitem name='BiggestHopsAction' action='BiggestHopsAction'/></menu><menu name='YardmAction' action='YardmAction'><menuitem name='ControlsAction' action='ControlsAction'/><separator/><menuitem name='AboutAction' action='AboutAction'/></menu><menu/></menubar></ui>");
 			this.MainMenuBar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/MainMenuBar")));
 			this.MainMenuBar.Name = "MainMenuBar";
 			this.MainVbox.Add(this.MainMenuBar);
@@ -327,6 +351,59 @@ namespace CashFlow
 			w19.Expand = false;
 			w19.Fill = false;
 			// Container child PropsVbox.Gtk.Box+BoxChild
+			this.PlotOptionsFrame = new global::Gtk.Frame();
+			this.PlotOptionsFrame.Name = "PlotOptionsFrame";
+			this.PlotOptionsFrame.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child PlotOptionsFrame.Gtk.Container+ContainerChild
+			this.GtkAlignment3 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
+			this.GtkAlignment3.Name = "GtkAlignment3";
+			this.GtkAlignment3.LeftPadding = ((uint)(12));
+			this.GtkAlignment3.TopPadding = ((uint)(12));
+			this.GtkAlignment3.RightPadding = ((uint)(6));
+			this.GtkAlignment3.BottomPadding = ((uint)(6));
+			// Container child GtkAlignment3.Gtk.Container+ContainerChild
+			this.vbox1 = new global::Gtk.VBox();
+			this.vbox1.Name = "vbox1";
+			this.vbox1.Spacing = 11;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.BiggestValuesCheck = new global::Gtk.CheckButton();
+			this.BiggestValuesCheck.CanFocus = true;
+			this.BiggestValuesCheck.Name = "BiggestValuesCheck";
+			this.BiggestValuesCheck.Label = global::Mono.Unix.Catalog.GetString("En Yüksek/Alçak Değerleri Göster");
+			this.BiggestValuesCheck.Active = true;
+			this.BiggestValuesCheck.DrawIndicator = true;
+			this.BiggestValuesCheck.UseUnderline = true;
+			this.vbox1.Add(this.BiggestValuesCheck);
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.BiggestValuesCheck]));
+			w20.Position = 0;
+			w20.Expand = false;
+			w20.Fill = false;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.BiggestHopsCheck = new global::Gtk.CheckButton();
+			this.BiggestHopsCheck.CanFocus = true;
+			this.BiggestHopsCheck.Name = "BiggestHopsCheck";
+			this.BiggestHopsCheck.Label = global::Mono.Unix.Catalog.GetString("En Büyük İniş/Çıkışları Göster");
+			this.BiggestHopsCheck.Active = true;
+			this.BiggestHopsCheck.DrawIndicator = true;
+			this.BiggestHopsCheck.UseUnderline = true;
+			this.vbox1.Add(this.BiggestHopsCheck);
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.BiggestHopsCheck]));
+			w21.Position = 1;
+			w21.Expand = false;
+			w21.Fill = false;
+			this.GtkAlignment3.Add(this.vbox1);
+			this.PlotOptionsFrame.Add(this.GtkAlignment3);
+			this.PlotOptionsFrameLabel = new global::Gtk.Label();
+			this.PlotOptionsFrameLabel.Name = "PlotOptionsFrameLabel";
+			this.PlotOptionsFrameLabel.LabelProp = global::Mono.Unix.Catalog.GetString("<b>Plan Seçenekleri</b>");
+			this.PlotOptionsFrameLabel.UseMarkup = true;
+			this.PlotOptionsFrame.LabelWidget = this.PlotOptionsFrameLabel;
+			this.PropsVbox.Add(this.PlotOptionsFrame);
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.PlotOptionsFrame]));
+			w24.Position = 3;
+			w24.Expand = false;
+			w24.Fill = false;
+			// Container child PropsVbox.Gtk.Box+BoxChild
 			this.PlotActionsFrame = new global::Gtk.Frame();
 			this.PlotActionsFrame.Name = "PlotActionsFrame";
 			this.PlotActionsFrame.ShadowType = ((global::Gtk.ShadowType)(1));
@@ -348,10 +425,10 @@ namespace CashFlow
 			this.PlotClearButton.BorderWidth = ((uint)(1));
 			this.PlotClearButton.Label = global::Mono.Unix.Catalog.GetString("Planı Temizle");
 			this.vbox2.Add(this.PlotClearButton);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.PlotClearButton]));
-			w20.Position = 0;
-			w20.Expand = false;
-			w20.Fill = false;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.PlotClearButton]));
+			w25.Position = 0;
+			w25.Expand = false;
+			w25.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.FocusButton = new global::Gtk.Button();
 			this.FocusButton.CanFocus = true;
@@ -360,10 +437,10 @@ namespace CashFlow
 			this.FocusButton.BorderWidth = ((uint)(1));
 			this.FocusButton.Label = global::Mono.Unix.Catalog.GetString("Verilere Odaklan");
 			this.vbox2.Add(this.FocusButton);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.FocusButton]));
-			w21.Position = 1;
-			w21.Expand = false;
-			w21.Fill = false;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.FocusButton]));
+			w26.Position = 1;
+			w26.Expand = false;
+			w26.Fill = false;
 			this.GtkAlignment2.Add(this.vbox2);
 			this.PlotActionsFrame.Add(this.GtkAlignment2);
 			this.PlotActionsFrameLabel = new global::Gtk.Label();
@@ -372,32 +449,32 @@ namespace CashFlow
 			this.PlotActionsFrameLabel.UseMarkup = true;
 			this.PlotActionsFrame.LabelWidget = this.PlotActionsFrameLabel;
 			this.PropsVbox.Add(this.PlotActionsFrame);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.PlotActionsFrame]));
-			w24.Position = 4;
-			w24.Expand = false;
-			w24.Fill = false;
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.PropsVbox[this.PlotActionsFrame]));
+			w29.Position = 4;
+			w29.Expand = false;
+			w29.Fill = false;
 			this.MainVbox.Add(this.PropsVbox);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.PropsVbox]));
-			w25.Position = 1;
-			w25.Expand = false;
-			w25.Fill = false;
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.PropsVbox]));
+			w30.Position = 1;
+			w30.Expand = false;
+			w30.Fill = false;
 			// Container child MainVbox.Gtk.Box+BoxChild
 			this.MainPlotAlignment = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.MainPlotAlignment.Name = "MainPlotAlignment";
 			this.MainVbox.Add(this.MainPlotAlignment);
-			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainPlotAlignment]));
-			w26.Position = 2;
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainPlotAlignment]));
+			w31.Position = 2;
 			// Container child MainVbox.Gtk.Box+BoxChild
 			this.MainStatusBar = new global::Gtk.Statusbar();
 			this.MainStatusBar.Name = "MainStatusBar";
 			this.MainStatusBar.Spacing = 6;
 			this.MainStatusBar.BorderWidth = ((uint)(2));
 			this.MainVbox.Add(this.MainStatusBar);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainStatusBar]));
-			w27.PackType = ((global::Gtk.PackType)(1));
-			w27.Position = 3;
-			w27.Expand = false;
-			w27.Fill = false;
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.MainVbox[this.MainStatusBar]));
+			w32.PackType = ((global::Gtk.PackType)(1));
+			w32.Position = 3;
+			w32.Expand = false;
+			w32.Fill = false;
 			this.Add(this.MainVbox);
 			if ((this.Child != null))
 			{
@@ -414,11 +491,15 @@ namespace CashFlow
 			this.ControlsAction.Activated += new global::System.EventHandler(this.OnControlsActionActivated);
 			this.AboutAction.Activated += new global::System.EventHandler(this.OnAboutActionActivated);
 			this.CSVExportAction.Activated += new global::System.EventHandler(this.OnCSVExportActionActivated);
+			this.BiggestValuesAction.Toggled += new global::System.EventHandler(this.OnBiggestValuesActionToggled);
+			this.BiggestHopsAction.Toggled += new global::System.EventHandler(this.OnBiggestHopsActionToggled);
 			this.DateStartButton.Clicked += new global::System.EventHandler(this.OnDateStartButtonClicked);
 			this.DateEndButton.Clicked += new global::System.EventHandler(this.OnDateEndButtonClicked);
 			this.CurrencyBaseSelection.Changed += new global::System.EventHandler(this.OnCurrencyBaseSelectionChanged);
 			this.CurrencyListButton.Clicked += new global::System.EventHandler(this.OnCurrencyListButtonClicked);
 			this.FetchButton.Clicked += new global::System.EventHandler(this.OnFetchButtonClicked);
+			this.BiggestValuesCheck.Toggled += new global::System.EventHandler(this.OnBiggestValuesActionToggled);
+			this.BiggestHopsCheck.Toggled += new global::System.EventHandler(this.OnBiggestHopsActionToggled);
 			this.PlotClearButton.Clicked += new global::System.EventHandler(this.OnClearPlotActionActivated);
 			this.FocusButton.Clicked += new global::System.EventHandler(this.OnFocusOnDataActionActivated);
 		}
