@@ -471,8 +471,9 @@ namespace CashFlow
                     {
                         X = DateTimeAxis.ToDouble(node.Time),
                         Y = node.Value,
-                        Size = 5,
-                        Fill = OxyColors.Blue
+                        Size = 8,
+                        Shape = MarkerType.Triangle,
+                        Fill = OxyColors.RoyalBlue,
                     });
                 }
                 foreach (Node node in Fetcher.BottomValues)
@@ -481,7 +482,8 @@ namespace CashFlow
                     {
                         X = DateTimeAxis.ToDouble(node.Time),
                         Y = node.Value,
-                        Size = 5,
+                        Size = 8,
+                        Shape = MarkerType.Triangle,
                         Fill = OxyColors.Red
                     });
                 }
@@ -495,7 +497,10 @@ namespace CashFlow
                     {
                         StartPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[0].Time), nodes[0].Value),
                         EndPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[1].Time), nodes[1].Value),
-                        LineStyle = LineStyle.Dot
+                        Color = OxyColors.DeepSkyBlue,
+                        Text = "+" + (nodes[1].Value - nodes[0].Value).ToString("0.000"),
+                        FontSize = 10,
+                        TextColor = OxyColors.DarkBlue,
                     });
                 }
 
@@ -505,8 +510,10 @@ namespace CashFlow
                     {
                         StartPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[0].Time), nodes[0].Value),
                         EndPoint = new DataPoint(DateTimeAxis.ToDouble(nodes[1].Time), nodes[1].Value),
-                        LineStyle = LineStyle.Dot,
-                        Color = OxyColors.Red
+                        Color = OxyColors.DarkOrange,
+                        Text = (nodes[1].Value - nodes[0].Value).ToString("0.000"),
+                        FontSize = 10,
+                        TextColor = OxyColors.DarkRed,
                     });
                 }
             }
